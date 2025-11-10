@@ -6,6 +6,7 @@ import {  PADDING_STANDARD, BORDER_RADIUS_STANDARD } from "../utils/utilitaires"
 interface IconButtonProps {
     title?: string;
     icon: string;
+    iconSize?: number;
     onPress: () => void;
     textColor: string;
     backgroundColor: string;
@@ -16,6 +17,7 @@ interface IconButtonProps {
 const IconButton: React.FC<IconButtonProps> = ({
     title,
     icon,
+    iconSize,
     onPress,
     textColor,
     backgroundColor,
@@ -24,7 +26,7 @@ const IconButton: React.FC<IconButtonProps> = ({
 }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, { backgroundColor }, style]}>
-            <Icon name={icon} size={25} color={textColor} />
+            {iconSize ? <Icon name={icon} size={iconSize} color={textColor} /> : <Icon name={icon} size={25} color={textColor} />}
             {title && <Text style={[styles.text, { color: textColor }, textStyle]}>{title}</Text>}
         </TouchableOpacity>
     );
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         padding: PADDING_STANDARD.small,
-        borderRadius: BORDER_RADIUS_STANDARD.medium,
+        borderRadius: BORDER_RADIUS_STANDARD.large,
     },
     text: {
         marginLeft: PADDING_STANDARD.small,

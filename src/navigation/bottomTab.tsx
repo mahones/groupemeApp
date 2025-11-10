@@ -5,7 +5,9 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLOR_PALETTE } from '../utils/utilitaires';
 import Dashboard from '../screens/Dashboard/index';
-
+import Style from '../global/style';
+import Groupements from '../screens/Groupements';
+import Participations from '../screens/Participations';
 const Tab = createBottomTabNavigator();
 
 const tabBarIcon =
@@ -19,8 +21,8 @@ export default function BottomTab() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLOR_PALETTE.primary,
-        tabBarInactiveTintColor: COLOR_PALETTE.secondary,
+        tabBarActiveTintColor: COLOR_PALETTE.secondary,
+        tabBarInactiveTintColor: COLOR_PALETTE.primary,
       }}
     >
       <Tab.Screen
@@ -30,52 +32,53 @@ export default function BottomTab() {
           tabBarIcon: tabBarIcon('home'),
         }}
       />
+      
       <Tab.Screen
-        name="Profile"
+        name="Explore"
+        component={Groupements}
+        options={{
+          tabBarIcon: tabBarIcon('travel-explore'),
+        }}
+      />
+      <Tab.Screen
+        name="Participations"
+        component={Participations}
+        options={{
+          tabBarIcon: tabBarIcon('front-hand'),
+        }}
+      />
+      <Tab.Screen
+        name="Propositions"
+        component={ProposalsScreen}
+        options={{
+          tabBarIcon: tabBarIcon('dataset-linked'),
+        }}
+      />
+      <Tab.Screen
+        name="verProfile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: tabBarIcon('person'),
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          tabBarIcon: tabBarIcon('settings'),
-        }}
-      />
-      <Tab.Screen
-        name="Notifications"
-        component={NotificationsScreen}
-        options={{
-          tabBarIcon: tabBarIcon('notifications'),
+          tabBarIcon: tabBarIcon('manage-accounts'),
         }}
       />
     </Tab.Navigator>
+    
   );
 }
 
+
+function ProposalsScreen() {
+  return (
+    <View style={Style.container}>
+      <Text>Participate Screen of bottomTab</Text>
+    </View>
+  );
+}
 
 function ProfileScreen() {
   return (
-    <View>
+    <View style={Style.container}>
       <Text>Profile Screen of bottomTab</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View>
-      <Text>Settings Screen of bottomTab</Text>
-    </View>
-  );
-}
-
-function NotificationsScreen() {
-  return (
-    <View>
-      <Text>Notifications Screen of bottomTab</Text>
     </View>
   );
 }

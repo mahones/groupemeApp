@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
           <View style={CardStyle.priceitemcontainer}>
             <Text style={CardStyle.priceitem}>{price} fcfa</Text>
             <IconButton
-              icon="add"
+              icon="front-hand"
               onPress={() => {}}
               textColor="white"
               backgroundColor={COLOR_PALETTE.secondary}

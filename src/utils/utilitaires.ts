@@ -5,6 +5,8 @@ const COLOR_PALETTE = {
  secondary: '#F87B1B',
  green: '#CBD99B',
  white: '#EEEEEE',
+ validation: '#347433',
+ danger: '#B22222'
 };
 
 const TEXT_COLORS = {
