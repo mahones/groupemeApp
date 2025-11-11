@@ -11,6 +11,7 @@ interface CardProps {
   imageSource: ImageSourcePropType;
   price: string;
   onPress: () => void;
+  iconBgColor?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -20,6 +21,7 @@ const Card: React.FC<CardProps> = ({
   imageSource,
   price,
   onPress,
+  iconBgColor
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
@@ -36,12 +38,23 @@ const Card: React.FC<CardProps> = ({
           </View>
           <View style={CardStyle.priceitemcontainer}>
             <Text style={CardStyle.priceitem}>{price} fcfa</Text>
-            <IconButton
-              icon="front-hand"
+            {
+              iconBgColor ? (
+                <IconButton
+                  icon="emoji-people"
+                  onPress={() => {}}  
+                  textColor="white" 
+                  backgroundColor={iconBgColor}
+                />
+              ) : (
+                <IconButton
+              icon="emoji-people"
               onPress={() => {}}
               textColor="white"
               backgroundColor={COLOR_PALETTE.secondary}
             />
+              )
+            }
           </View>
         </View>
         {/* fin description groupement */}

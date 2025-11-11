@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ScrollView,
   // TouchableOpacity,
-  // Text,
+  Text,
   View,
 } from 'react-native';
 import Style from '../../global/style';
@@ -13,6 +13,9 @@ import SearchBar from '../../components/searchBare';
 export default function Groupements() {
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={Style.container}>
+      <View >
+        <Text style={GroupementsStyle.title}>Rechercher un groupement</Text>
+      </View>
       {/* barre de recherche */}
       <SearchBar />
       {/* fin barre de recherche */}

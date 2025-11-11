@@ -24,6 +24,7 @@ const PADDING_STANDARD = {
     medium: 16,
     large: 24,
     xlarge: 32,
+    headers: 40,
 }
 
 const MARGIN_STANDARD = {
@@ -31,6 +32,7 @@ const MARGIN_STANDARD = {
     medium: 16,
     large: 24,
     xlarge: 32,
+    headers: 40,
 };
 const BORDER_RADIUS_STANDARD = {
     small: 4,

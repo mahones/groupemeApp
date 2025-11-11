@@ -7,7 +7,8 @@ import { COLOR_PALETTE } from '../utils/utilitaires';
 import Dashboard from '../screens/Dashboard/index';
 import Style from '../global/style';
 import Groupements from '../screens/Groupements';
-import Participations from '../screens/Participations';
+import Propositions from '../screens/Participations';
+import Profile from '../screens/Profile';
 const Tab = createBottomTabNavigator();
 
 const tabBarIcon =
@@ -32,7 +33,7 @@ export default function BottomTab() {
           tabBarIcon: tabBarIcon('home'),
         }}
       />
-      
+
       <Tab.Screen
         name="Explore"
         component={Groupements}
@@ -42,9 +43,9 @@ export default function BottomTab() {
       />
       <Tab.Screen
         name="Participations"
-        component={Participations}
+        component={Propositions}
         options={{
-          tabBarIcon: tabBarIcon('front-hand'),
+          tabBarIcon: tabBarIcon('waving-hand'),
         }}
       />
       <Tab.Screen
@@ -56,16 +57,14 @@ export default function BottomTab() {
       />
       <Tab.Screen
         name="verProfile"
-        component={ProfileScreen}
+        component={Profile}
         options={{
           tabBarIcon: tabBarIcon('manage-accounts'),
         }}
       />
     </Tab.Navigator>
-    
   );
 }
-
 
 function ProposalsScreen() {
   return (
@@ -75,10 +74,4 @@ function ProposalsScreen() {
   );
 }
 
-function ProfileScreen() {
-  return (
-    <View style={Style.container}>
-      <Text>Profile Screen of bottomTab</Text>
-    </View>
-  );
-}
+

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { PADDING_STANDARD } from "../../utils/utilitaires";
+import { PADDING_STANDARD, TEXT_STANDARD } from "../../utils/utilitaires";
 
 const GroupementsStyle = StyleSheet.create({
 
@@ -12,6 +12,12 @@ const GroupementsStyle = StyleSheet.create({
     paddingTop: PADDING_STANDARD.small,
     paddingBottom: PADDING_STANDARD.small,
   },
+
+  title:{
+    fontSize: TEXT_STANDARD.large,
+    fontWeight: 'bold',
+    marginBottom: PADDING_STANDARD.medium,
+  }
 
 });
 
