@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { BORDER_RADIUS_STANDARD, COLOR_PALETTE, TEXT_STANDARD } from "../utils/utilitaires";
 
 interface IconButtonLargeProps {
-    icon: string;
+    icon?: string;
     text: string;
     iconSize?: number;
     iconColor?: string;
@@ -16,7 +16,7 @@ interface IconButtonLargeProps {
 const IconButtonLarge: React.FC<IconButtonLargeProps> = ({ icon, text, iconSize,iconColor, onPress, style, textStyle }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-            <Icon name={icon} size={iconSize} color={iconColor} />
+            {icon && <Icon name={icon} size={iconSize} color={iconColor} />}
             <Text style={[styles.text, textStyle]}>{text}</Text>
         </TouchableOpacity>
     );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: TEXT_STANDARD.big,
         
-        marginLeft: 90,
+        marginLeft: 50,
         color: COLOR_PALETTE.white,
     },
 })

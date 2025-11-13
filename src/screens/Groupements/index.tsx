@@ -9,8 +9,11 @@ import Style from '../../global/style';
 import GroupementsStyle from './groupementsStyle';
 import Card from '../../components/card';
 import SearchBar from '../../components/searchBare';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../navigation/routes';
 
 export default function Groupements() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={Style.container}>
       <View >
@@ -30,7 +33,7 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/pexels.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
           />
         </View>
 
@@ -41,7 +44,7 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/casque.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
           />
         </View>
 
@@ -52,7 +55,7 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/med.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
           />
         </View>
 
@@ -63,7 +66,7 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/phone.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
           />
         </View>
 
@@ -74,7 +77,7 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/savon.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
           />
         </View>
         <View style={GroupementsStyle.groupementList}>
@@ -84,29 +87,10 @@ export default function Groupements() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/soin.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
           />
         </View>
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 5"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/savon.jpg')}
-            price="1000"
-            onPress={() => {}}
-          />
-        </View>
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 6"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/soin.jpg')}
-            price="1000"
-            onPress={() => {}}
-          />
-        </View>
+        
         {/* liste des groupements */}
       </View>
       {/* fin liste des groupements */}

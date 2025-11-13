@@ -6,10 +6,16 @@ const COLOR_PALETTE = {
  green: '#CBD99B',
  white: '#EEEEEE',
  validation: '#347433',
- danger: '#B22222'
+ validation2: '#34743391',
+ danger: '#B22222',
+ danger2: '#b2222291',
+ gray: '#7C7C7C',
+ dark: '#000000',
+ light: '#FFFFFF',
 };
 
 const TEXT_COLORS = {
+    gray: '#7C7C7C',
     dark: '#000000',
     light: '#FFFFFF',
 };
@@ -18,6 +24,14 @@ const PADDING_GLOBAL = {
     top: 35,
     left: 15,
     right: 15,
+    top15: 15,
+    top35: 35,
+    top45: 45,
+    top50: 50,
+    bottom15: 15,
+    bottom35: 35,
+    bottom45: 45,
+    bottom50: 50
 };
 const PADDING_STANDARD = {
     small: 8,

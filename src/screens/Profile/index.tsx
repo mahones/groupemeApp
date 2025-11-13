@@ -36,6 +36,7 @@ export default function Profile() {
         <ProfilList iconName="person" title="Mon Profil" />
         <ProfilList iconName="phone" title="Numéro de téléphone" />
         <ProfilList iconName="location-history" title="Adresse de livraison" />
+        <ProfilList iconName="settings" title="Paramètres" />
         <ProfilList iconName="help" title="Aide" />
         <ProfilList iconName="textsms" title="A propos" />
       </View>
@@ -47,6 +48,7 @@ export default function Profile() {
           iconSize={30}
           iconColor={COLOR_PALETTE.white}
           onPress={() => {}}
+          textStyle={ProfileStyle.buttonTextStyle}
         />
       </View>
     </View>

@@ -41,6 +41,9 @@ const ProfileStyle = StyleSheet.create({
   },
   logoutcontainer: {
     marginBottom: 50,
+  },
+  buttonTextStyle: {
+    marginLeft: 90,
   }
 });
 

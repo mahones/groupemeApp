@@ -1,23 +1,43 @@
 import React from 'react';
-import { 
-  ScrollView, 
-  View, 
-  Text, 
-
-} from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Style from '../../global/style';
 import DashboardStyle from './dashboardStyle';
 import Card from '../../components/card';
 import PngButton from '../../components/pngButton';
 // import IconButton from '../../components/iconButton';
 import { COLOR_PALETTE } from '../../utils/utilitaires';
+/**
+ * Import du type RootStackParamList depuis routes.tsx
+ *
+ * On importe le MÊME type utilisé dans routes.tsx pour que
+ * Dashboard et routes.tsx parlent le même "langage"
+ *
+ * type: on utilise 'type' car c'est uniquement pour TypeScript,
+ * ça ne sera pas compilé en JavaScript
+ */
+import type { RootStackParamList } from '../../navigation/routes';
+
 export default function Dashboard() {
+  /**
+   * useNavigation - Hook React Navigation pour accéder aux fonctions de navigation
+   *
+   * NavigationProp<RootStackParamList> type :
+   * Cela indique à TypeScript que cette fonction de navigation
+   * connaît toutes les routes définies dans RootStackParamList
+   *
+   * Résultat : navigation.navigate() suggère les noms de routes disponibles
+   * et vérifie les paramètres qu'on envoie
+   */
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <ScrollView style={Style.container} showsVerticalScrollIndicator={false}>
       {/* entête de dashboard */}
       <View style={DashboardStyle.container}>
         <Text style={DashboardStyle.welcomeText}>Bienvenue, Mahones</Text>
-        <Text style={DashboardStyle.title}>Nous vous souhaitons une bonne journée</Text>
+        <Text style={DashboardStyle.title}>
+          Nous vous souhaitons une bonne journée
+        </Text>
       </View>
       {/* fin entête de dashboard */}
 
@@ -34,62 +54,62 @@ export default function Dashboard() {
             label="Toutes"
             containerStyle={{ backgroundColor: COLOR_PALETTE.secondary }}
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-cat-65.png')}
             label="Animaux"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-automobile-65.png')}
             label="Automobile"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-babys-room-65.png')}
             label="Enfants"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-electronics-65.png')}
             label="Électronique"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-house-with-a-garden-65.png')}
             label="Maison"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-informatics-65.png')}
             label="Informatique"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-lip-gloss-65.png')}
             label="Beauté"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-media-65.png')}
             label="Média & Livres"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-phone-65.png')}
             label="Téléphone"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-polo-shirt-65.png')}
             label="Vêtements"
             onPress={() => {}}
-          /> 
+          />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-ring-side-view-65.png')}
             label="Bijoux"
             onPress={() => {}}
-          /> 
+          />
         </ScrollView>
       </View>
       {/* fin barre horizontale des catégories */}
@@ -104,7 +124,19 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/pexels.jpg')}
             price="1000"
-            onPress={() => {}}
+            /**
+             * navigation.navigate() - Navigue vers une nouvelle page
+             *
+             * 'SingleGroupements' : nom de la route (défini dans RootStackParamList)
+             * { id: 1 } : paramètres à envoyer à SingleGroupements
+             *
+             * Flux :
+             * 1. Utilisateur clique sur la Card
+             * 2. onPress déclenche cette navigation
+             * 3. SingleGroupements reçoit { id: 1 } via useRoute().params
+             * 4. SingleGroupements affiche : "SingleGroupements - ID: 1"
+             */
+            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
           />
         </View>
 
@@ -115,7 +147,7 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/casque.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
           />
         </View>
 
@@ -126,7 +158,7 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/med.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
           />
         </View>
 
@@ -137,7 +169,7 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/phone.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
           />
         </View>
 
@@ -148,7 +180,7 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/savon.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
           />
         </View>
         <View style={DashboardStyle.groupementList}>
@@ -158,7 +190,7 @@ export default function Dashboard() {
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/soin.jpg')}
             price="1000"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('SingleGroupements', { id: 6 })}
           />
         </View>
         {/* liste des groupements */}

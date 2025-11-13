@@ -1,13 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable'
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLOR_PALETTE } from '../utils/utilitaires';
 import Dashboard from '../screens/Dashboard/index';
-import Style from '../global/style';
 import Groupements from '../screens/Groupements';
-import Propositions from '../screens/Participations';
+import Participations from '../screens/Participations';
+import Propositions from '../screens/Propositions';
 import Profile from '../screens/Profile';
 const Tab = createBottomTabNavigator();
 
@@ -43,20 +42,20 @@ export default function BottomTab() {
       />
       <Tab.Screen
         name="Participations"
-        component={Propositions}
+        component={Participations}
         options={{
           tabBarIcon: tabBarIcon('waving-hand'),
         }}
       />
       <Tab.Screen
         name="Propositions"
-        component={ProposalsScreen}
+        component={Propositions}
         options={{
           tabBarIcon: tabBarIcon('dataset-linked'),
         }}
       />
       <Tab.Screen
-        name="verProfile"
+        name="Profile"
         component={Profile}
         options={{
           tabBarIcon: tabBarIcon('manage-accounts'),
@@ -66,12 +65,5 @@ export default function BottomTab() {
   );
 }
 
-function ProposalsScreen() {
-  return (
-    <View style={Style.container}>
-      <Text>Participate Screen of bottomTab</Text>
-    </View>
-  );
-}
 
 

@@ -1,0 +1,233 @@
+import React from 'react';
+import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+// useRoute pour récupérer les paramètres de la route
+// RouteProp pour type-specifier les paramètres
+import { useRoute, RouteProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../navigation/routes';
+import SingleGroupementsStyle from './SingleGroupementsStyle';
+import IconButtonLarge from '../../components/iconButtonLarge';
+import { getGroupementById } from '../../utils/groupementsData';
+
+// import Icon from 'react-native-vector-icons/EvilIcons';
+
+/**
+ * SingleGroupementsRouteProp - Type spécifique pour cette page
+ *
+ * RouteProp<RootStackParamList, 'SingleGroupements'> signifie :
+ * "Je vais utiliser la route 'SingleGroupements' du type RootStackParamList"
+ *
+ * Cela dit à TypeScript que cette page reçoit un objet 'params'
+ * avec une propriété 'id' de type number
+ */
+type SingleGroupementsRouteProp = RouteProp<
+  RootStackParamList,
+  'SingleGroupements'
+>;
+
+export default function SingleGroupements() {
+  /**
+   * useRoute() - Hook React Navigation pour accéder aux paramètres de la route
+   *
+   * C'est comme la "props" de la page, mais spécifique à la navigation.
+   * On le type avec SingleGroupementsRouteProp pour que TypeScript
+   * sache quels paramètres sont disponibles
+   */
+  const route = useRoute<SingleGroupementsRouteProp>();
+
+  /**
+   * Déstructuration des paramètres
+   * route.params contient : { id: number }
+   * Donc on récupère juste l'id que Dashboard a envoyé
+   */
+  const { id } = route.params;
+
+  /**
+   * Récupère le groupement complet (id + image) depuis les données centralisées
+   */
+  const groupement = getGroupementById(id);
+
+  return (
+    <View style={SingleGroupementsStyle.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={SingleGroupementsStyle.scrollContainer}
+      >
+        <View style={SingleGroupementsStyle.imageSlider}>
+          {/*
+          Utiliser <Image /> plutôt qu'une View pour afficher une image.
+          - resizeMode="cover" permet de remplir le conteneur sans déformer.
+          - Répéter les borderBottom*Radius dans le style de l'image
+            aide Android à afficher les coins arrondis correctement.
+          - groupement.image : récupère l'image dynamiquement depuis les données
+        */}
+          {groupement ? (
+            <Image
+              source={groupement.image}
+              style={SingleGroupementsStyle.image}
+              resizeMode="cover"
+            />
+          ) : (
+            <View style={SingleGroupementsStyle.image} />
+          )}
+        </View>
+        <View style={SingleGroupementsStyle.detailsContainer}>
+          {/* Affiche l'ID du groupement sélectionné */}
+          <View style={SingleGroupementsStyle.titleSubtitleContainer}>
+            <View>
+              <Text style={SingleGroupementsStyle.titleContainer}>
+                Groupement ID: {id}
+              </Text>
+              <Text style={SingleGroupementsStyle.autorName}>
+                Par: Groupement App
+              </Text>
+            </View>
+
+            <View>
+              {/* Affiche une icône différente selon l'ID du groupement */}
+              {id === 1 ? (
+                <TouchableOpacity>
+                  <Image
+                    source={require('../../public/assets/png/icons8-heart-65 black.png')}
+                    style={SingleGroupementsStyle.imageheart}
+                    resizeMode="cover"
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity>
+                  <Image
+                    source={require('../../public/assets/png/icons8-heart-65.png')}
+                    style={SingleGroupementsStyle.imageheart}
+                    resizeMode="cover"
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+          {/* etat et date de clôture */}
+          <View
+            style={[
+              // SingleGroupementsStyle.rowWrap,
+              SingleGroupementsStyle.etatEtDate,
+            ]}
+          >
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-click-&-collect-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>Etat:</Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>Collecte</Text>
+            </View>
+
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-country-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>Pays:</Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>Togo</Text>
+            </View>
+
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-cargo-ship-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>
+                Transport:
+              </Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>
+                Par bateaux
+              </Text>
+            </View>
+
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-15-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>Clôture:</Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>10/10/2022</Text>
+            </View>
+
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-opened-folder-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>
+                Catégories:
+              </Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>Livres</Text>
+            </View>
+
+            <View style={SingleGroupementsStyle.rowfeature}>
+              <Image
+                style={SingleGroupementsStyle.iconSize}
+                source={require('../../public/assets/png/icons8-man-with-money-skin-type-3-65.png')}
+              />
+              <Text style={SingleGroupementsStyle.featureTitle}>
+                Participant:
+              </Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>12</Text>
+            </View>
+          </View>
+          {/* fin de etat et date de clôture */}
+
+          {/* nb et prix */}
+          <View
+            style={[
+              SingleGroupementsStyle.row,
+              SingleGroupementsStyle.etatEtDate,
+            ]}
+          >
+            <View style={SingleGroupementsStyle.rowPriceDevise}>
+              <Text style={SingleGroupementsStyle.prix}>1000</Text>
+              <Text style={SingleGroupementsStyle.devise}>
+                {' '}
+                fcfa (Prix hors taxes)
+              </Text>
+            </View>
+          </View>
+          {/* fin nb et prix */}
+
+          {/* description du groupement */}
+          <View style={SingleGroupementsStyle.descriptionContainer}>
+            <Text
+              style={[
+                SingleGroupementsStyle.textMedium,
+                SingleGroupementsStyle.textMediumBold,
+                SingleGroupementsStyle.bottomBorder,
+              ]}
+            >
+              Description
+            </Text>
+
+            <Text
+              style={[
+                SingleGroupementsStyle.textNormal,
+                SingleGroupementsStyle.descriptionTopborder,
+              ]}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </Text>
+          </View>
+          {/* fin description du groupement */}
+        </View>
+      </ScrollView>
+
+      {/* Bouton fixe au bas de l'écran */}
+      <IconButtonLarge
+        icon="emoji-people"
+        iconSize={30}
+        iconColor="white"
+        text="Participer au groupement"
+        onPress={() => {}}
+        style={SingleGroupementsStyle.fixedButton}
+      />
+    </View>
+  );
+}
