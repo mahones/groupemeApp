@@ -73,9 +73,13 @@ export default function SingleGroupements() {
         <View style={SingleGroupementsStyle.detailsContainer}>
           {/* Affiche l'ID du groupement sélectionné */}
           <View style={SingleGroupementsStyle.titleSubtitleContainer}>
-            <View>
-              <Text style={SingleGroupementsStyle.titleContainer}>
-                Groupement ID: {id}
+            <View style={{ flex: 1 }}>
+              <Text
+                style={SingleGroupementsStyle.titleContainer}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Groupement ID:  kjkfejs kejsfeoi  kljdfio  ksljf lkj ko oi joifes kdfe dd {id}
               </Text>
               <Text style={SingleGroupementsStyle.autorName}>
                 Par: Groupement App

@@ -1,21 +1,18 @@
 import React from 'react';
-import {
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import Style from '../../global/style';
 import ParticipationsStyle from './participationsStyle';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 // import Card from '../../components/card';
-import Card from '../../components/card';
 import SearchBar from '../../components/searchBare';
-import { COLOR_PALETTE } from '../../utils/utilitaires';
+import HorizontalCard from '../../components/horizontalCard';
+import type { RootStackParamList } from '../../navigation/routes';
 
 export default function Participations() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={Style.container}>
-
-      <View >
+      <View>
         <Text style={ParticipationsStyle.title}>Mes participations</Text>
       </View>
       {/* barre de recherche */}
@@ -23,81 +20,60 @@ export default function Participations() {
       {/* fin barre de recherche */}
 
       {/* liste des groupements */}
-      <View style={ParticipationsStyle.grid}>
-        {/* liste des groupements */}
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 1"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/pexels.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
 
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 2"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/casque.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
+      <HorizontalCard
+        title="Groupement 1 ljio  lkjklj lkjlj lkjlj lj lkj lkjks kd lj  lkjlkj"
+        price="1000 fcfa"
+        quantity={1}
+        etat="Collecte"
+        imageSource={require('../../public/assets/images/pexels.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
+      />
 
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 3"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/med.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
+      <HorizontalCard
+        title="Groupement 2 "
+        price="1000  fcfa"
+        quantity={2}
+        etat="Commande en cours"
+        imageSource={require('../../public/assets/images/casque.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
+      />
 
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 4"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/phone.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
+      <HorizontalCard
+        title="Groupement 3 l"
+        price="1000 fcfa"
+        quantity={1}
+        etat="Collecte"
+        imageSource={require('../../public/assets/images/med.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
+      />
 
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 5"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/savon.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
-        <View style={ParticipationsStyle.groupementList}>
-          <Card
-            title="Groupements 6"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/soin.jpg')}
-            price="1000"
-            onPress={() => {}}
-            iconBgColor={COLOR_PALETTE.validation}
-          />
-        </View>
-        {/* liste des groupements */}
-      </View>
-      
+      <HorizontalCard
+        title="Groupement 4 "
+        price="1000  fcfa"
+        quantity={2}
+        etat="Commande en cours"
+        imageSource={require('../../public/assets/images/phone.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
+      />
+      <HorizontalCard
+        title="Groupement 1 ljio  lkjklj lkjlj lkjlj lj lkj lkjks kd lj  lkjlkj"
+        price="1000 fcfa"
+        quantity={1}
+        etat="Collecte"
+        imageSource={require('../../public/assets/images/savon.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
+      />
+
+      <HorizontalCard
+        title="Groupement 2 "
+        price="1000  fcfa"
+        quantity={2}
+        etat="Commande en cours"
+        imageSource={require('../../public/assets/images/soin.jpg')}
+        onPress={() => navigation.navigate('SingleGroupements', { id: 6 })}
+      />
+
       {/* fin liste des groupements */}
     </ScrollView>
   );

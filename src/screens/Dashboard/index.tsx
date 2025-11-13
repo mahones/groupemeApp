@@ -164,7 +164,7 @@ export default function Dashboard() {
 
         <View style={DashboardStyle.groupementList}>
           <Card
-            title="Groupements 4"
+            title="Groupements 4 kei dfe "
             participant="10"
             flagUrl="https://flagcdn.com/w320/tg.png"
             imageSource={require('../../public/assets/images/phone.jpg')}

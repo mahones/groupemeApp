@@ -11,6 +11,9 @@ const SingleGroupementsStyle = StyleSheet.create({
     // flex: 1 pour que le conteneur prenne tout l'espace disponible
     flex: 1,
   },
+  flex:{
+    flex: 1,
+  },
   detailsContainer: {
     marginTop: PADDING_GLOBAL.top15,
     marginLeft: PADDING_GLOBAL.left,
@@ -43,6 +46,7 @@ const SingleGroupementsStyle = StyleSheet.create({
   },
   // Groupement title, subtitle & like container
   titleSubtitleContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     //  alignItems: 'center',
@@ -55,6 +59,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     fontSize: TEXT_STANDARD.xlarge,
     fontWeight: 'bold',
     alignItems: 'center',
+    marginRight: 1,
   },
   // end title container
   textSmall: {
@@ -176,6 +181,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     color: COLOR_PALETTE.primary,
   },
   descriptionContainer: {
+    flex: 1,
     paddingBottom: 14,
     borderColor: 'gray',
     // borderBottomWidth: 0.6,

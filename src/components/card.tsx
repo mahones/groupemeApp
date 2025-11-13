@@ -29,7 +29,8 @@ const Card: React.FC<CardProps> = ({
         <Image style={CardStyle.imagestyle} source={imageSource} />
         {/* description groupement  */}
         <View style={CardStyle.itemscontainer}>
-          <Text style={CardStyle.titleitem}>{title}</Text>
+          <Text style={CardStyle.titleitem} numberOfLines={1}
+          ellipsizeMode="tail">{title}</Text>
           <View style={CardStyle.descriptionitemcontainer}>
             <Image source={{ uri: flagUrl }} style={CardStyle.iconstyle} />
             <Text style={CardStyle.descriptionitem}>

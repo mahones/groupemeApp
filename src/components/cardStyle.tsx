@@ -26,6 +26,7 @@ const CardStyle = StyleSheet.create({
         marginBottom: PADDING_STANDARD.small,
     },
     titleitem: {
+        flex: 1,
         fontSize: TEXT_STANDARD.big,
         fontWeight: 'bold',
     },
