@@ -211,6 +211,24 @@ const SingleGroupementsStyle = StyleSheet.create({
     right: PADDING_GLOBAL.right,
     width: 'auto',
   },
+  // modal button style
+  modalButton: {
+    marginTop: 10,
+    paddingVertical: 15,
+    backgroundColor: COLOR_PALETTE.primary,
+  },
+  popUpTextContainer: {
+    width: '100%',
+  },
+  popUpImageContainer: {
+    alignItems: 'center',
+  },
+  popUpImage: {
+    width: 160,
+    height: 120,
+    marginTop: 10,
+    marginBottom: 5,
+  },
 });
 
 export default SingleGroupementsStyle;

@@ -43,7 +43,7 @@ const ProfileStyle = StyleSheet.create({
     marginBottom: 50,
   },
   buttonTextStyle: {
-    marginLeft: 90,
+    // marginLeft: 90,
   }
 });
 

@@ -44,7 +44,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
           {title}
         </Text>
 
-        <Text style={styles.etat}>Etat : {etat}</Text>
+        <Text style={styles.etat}>{etat}</Text>
         <View style={styles.maParticipation}>
           <Text style={styles.text}>Ma paticipaiton ({quantity}): </Text>
           <Text style={styles.price}>{price}</Text>

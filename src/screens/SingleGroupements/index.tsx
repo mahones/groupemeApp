@@ -7,7 +7,8 @@ import type { RootStackParamList } from '../../navigation/routes';
 import SingleGroupementsStyle from './SingleGroupementsStyle';
 import IconButtonLarge from '../../components/iconButtonLarge';
 import { getGroupementById } from '../../utils/groupementsData';
-
+import PopUp from '../../components/popUp';
+import InputCustom from '../../components/inputCustom';
 // import Icon from 'react-native-vector-icons/EvilIcons';
 
 /**
@@ -19,6 +20,7 @@ import { getGroupementById } from '../../utils/groupementsData';
  * Cela dit à TypeScript que cette page reçoit un objet 'params'
  * avec une propriété 'id' de type number
  */
+
 type SingleGroupementsRouteProp = RouteProp<
   RootStackParamList,
   'SingleGroupements'
@@ -45,6 +47,19 @@ export default function SingleGroupements() {
    * Récupère le groupement complet (id + image) depuis les données centralisées
    */
   const groupement = getGroupementById(id);
+
+  // const [ isModalVisible, setIsModalVisible ] = React.useState(false);
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [count, setCount] = React.useState('');
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+  const countToZero = () => {
+    setCount('0');
+  };
 
   return (
     <View style={SingleGroupementsStyle.container}>
@@ -79,7 +94,8 @@ export default function SingleGroupements() {
                 numberOfLines={2}
                 ellipsizeMode="tail"
               >
-                Groupement ID:  kjkfejs kejsfeoi  kljdfio  ksljf lkj ko oi joifes kdfe dd {id}
+                Groupement ID: kjkfejs kejsfeoi kljdfio ksljf lkj ko oi joifes
+                kdfe dd {id}
               </Text>
               <Text style={SingleGroupementsStyle.autorName}>
                 Par: Groupement App
@@ -229,9 +245,103 @@ export default function SingleGroupements() {
         iconSize={30}
         iconColor="white"
         text="Participer au groupement"
-        onPress={() => {}}
+        onPress={openModal}
         style={SingleGroupementsStyle.fixedButton}
       />
+      { groupement ? (
+        <PopUp
+        visible={isModalVisible}
+        title={groupement.title}
+        onClose={closeModal}
+      >
+        <View>
+          <View style={SingleGroupementsStyle.popUpImageContainer}>
+            <Image
+              style={SingleGroupementsStyle.popUpImage}
+              source={require('../../public/assets/png/bestfriend solidarity.png')}
+            />
+          </View>
+          <View>
+            <InputCustom
+              label="Nombre de participants"
+              iconName="people"
+              keyboardType="numeric"
+              placeholder="Entrez le nombre de participants"
+              value={count}
+              // Met à jour `count` avec la valeur saisie.
+              // onChangeText reçoit le texte saisi (string) — on le convertit
+              // en number pour stocker dans `count`.
+              onChangeText={(text: string) => {
+                if (text === '' || /^\d+$/.test(text)) {
+                  setCount(text);
+                }
+              }}
+            />
+          </View>
+          <View
+          // style={SingleGroupementsStyle.popUpTextContainer}
+          >
+            <Text>
+              Nb: Après validation, vous ne pouvez plus annuler votre
+              participation.
+            </Text>
+          </View>
+
+          <IconButtonLarge
+            text="Valider ma participation"
+            onPress={countToZero}
+            style={SingleGroupementsStyle.modalButton}
+          />
+        </View>
+      </PopUp>
+      ): (
+        <PopUp
+        visible={isModalVisible}
+        title="Participer au groupement"
+        onClose={closeModal}
+      >
+        <View>
+          <View style={SingleGroupementsStyle.popUpImageContainer}>
+            <Image
+              style={SingleGroupementsStyle.popUpImage}
+              source={require('../../public/assets/png/bestfriend solidarity.png')}
+            />
+          </View>
+          <View>
+            <InputCustom
+              label="Nombre de participants"
+              iconName="people"
+              keyboardType="numeric"
+              placeholder="Entrez le nombre de participants"
+              value={count}
+              // Met à jour `count` avec la valeur saisie.
+              // onChangeText reçoit le texte saisi (string) — on le convertit
+              // en number pour stocker dans `count`.
+              onChangeText={(text: string) => {
+                if (text === '' || /^\d+$/.test(text)) {
+                  setCount(text);
+                }
+              }}
+            />
+          </View>
+          <View
+          // style={SingleGroupementsStyle.popUpTextContainer}
+          >
+            <Text>
+              Nb: Après validation, vous ne pouvez plus annuler votre
+              participation.
+            </Text>
+          </View>
+
+          <IconButtonLarge
+            text="Valider ma participation"
+            onPress={countToZero}
+            style={SingleGroupementsStyle.modalButton}
+          />
+        </View>
+      </PopUp>
+      )}
+      
     </View>
   );
 }
