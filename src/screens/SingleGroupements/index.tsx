@@ -175,7 +175,7 @@ export default function SingleGroupements() {
               >
                 <Image
                   style={SingleGroupementsStyle.iconSize}
-                  source={require('../../public/assets/png/icons8-footprint-64.png')}
+                  source={require('../../public/assets/png/icons8-collect-65.png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>Etat:</Text>
                 <Text style={SingleGroupementsStyle.featureInfo}>Collecte</Text>
@@ -189,7 +189,7 @@ export default function SingleGroupements() {
               >
                 <Image
                   style={SingleGroupementsStyle.iconSize}
-                  source={require('../../public/assets/png/icons8-country-65 (1).png')}
+                  source={require('../../public/assets/png/icons8-country-65 .png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>Pays:</Text>
                 <Text style={SingleGroupementsStyle.featureInfo}>Togo</Text>
@@ -203,7 +203,7 @@ export default function SingleGroupements() {
               >
                 <Image
                   style={SingleGroupementsStyle.iconSize}
-                  source={require('../../public/assets/png/icons8-illumination-brightness-64.png')}
+                  source={require('../../public/assets/png/icons8-truck-65.png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>
                   Transport:
@@ -221,7 +221,7 @@ export default function SingleGroupements() {
               >
                 <Image
                   style={SingleGroupementsStyle.iconSize}
-                  source={require('../../public/assets/png/icons8-category-64.png')}
+                  source={require('../../public/assets/png/icons8-bookmark-65.png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>
                   Catégories:
@@ -237,7 +237,7 @@ export default function SingleGroupements() {
               >
                 <Image
                   style={SingleGroupementsStyle.iconSize}
-                  source={require('../../public/assets/png/icons8-trophy-cup-64.png')}
+                  source={require('../../public/assets/png/icons8-volunteering-65.png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>
                   Participant:

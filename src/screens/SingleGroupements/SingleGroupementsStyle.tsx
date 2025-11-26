@@ -97,12 +97,12 @@ const SingleGroupementsStyle = StyleSheet.create({
     marginVertical: 5,
   },
   featureTitle: {
-    fontSize: TEXT_STANDARD.big,
+    fontSize: TEXT_STANDARD.medium,
     marginLeft: 8,
   },
   featureInfo: {
-    fontSize: TEXT_STANDARD.big,
-    fontWeight: 'bold',
+    fontSize: TEXT_STANDARD.medium,
+    fontWeight: '600',
     marginLeft: 8,
   },
   rowWrap: {
@@ -117,7 +117,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     width: '100%',
     padding: 5,
     borderRadius: 10,
-    backgroundColor: '#fae2c6',
+    backgroundColor: '#faf0e6',
   },
   rowPriceDevise: {
     // flexDirection: 'row',
@@ -243,7 +243,7 @@ const SingleGroupementsStyle = StyleSheet.create({
   dateClotureContainer: {
     borderRadius: 10,
     padding: 2,
-    backgroundColor: '#fae2c6',
+    backgroundColor: '#faf0e6',
   },
 });
 

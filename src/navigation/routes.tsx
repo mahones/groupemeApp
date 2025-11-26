@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text } from 'react-native';
+import { View, Text, } from 'react-native';
 import BottomTab from './bottomTab';
 import SingleGroupements from '../screens/SingleGroupements';
 
@@ -16,6 +16,7 @@ import SingleGroupements from '../screens/SingleGroupements';
  * Avantage : TypeScript vérifie que les navigations utilisent les bonnes routes
  * avec les bons paramètres. Pas d'erreurs à l'exécution !
  */
+
 export type RootStackParamList = {
   dashboard: undefined;
   SingleGroupements: { id: number };

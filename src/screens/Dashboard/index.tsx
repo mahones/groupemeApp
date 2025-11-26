@@ -7,6 +7,7 @@ import Card from '../../components/card';
 import PngButton from '../../components/pngButton';
 // import IconButton from '../../components/iconButton';
 import { COLOR_PALETTE } from '../../utils/utilitaires';
+import { allGroupements } from '../../store/bd';
 /**
  * Import du type RootStackParamList depuis routes.tsx
  *
@@ -30,6 +31,17 @@ export default function Dashboard() {
    * et vérifie les paramètres qu'on envoie
    */
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [selectedCategory, setSelectedCategory] = React.useState('toutes');
+  const groupements = allGroupements;
+  const handlCategoryPress = (nameCategory: string) => {
+    setSelectedCategory(nameCategory);
+  };
+  const filteredGroupements = React.useMemo(() => {
+    return selectedCategory === 'toutes'
+      ? groupements
+      : groupements.filter(g => g.category === selectedCategory);
+  }, [selectedCategory, groupements]);
+
   return (
     <ScrollView style={Style.container} showsVerticalScrollIndicator={false}>
       {/* entête de dashboard */}
@@ -53,62 +65,62 @@ export default function Dashboard() {
             imageSource={require('../../public/assets/png/icons8-check-all-65.png')}
             label="Toutes"
             containerStyle={{ backgroundColor: COLOR_PALETTE.secondary }}
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('toutes')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-cat-65.png')}
             label="Animaux"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('animaux')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-automobile-65.png')}
             label="Automobile"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('automobile')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-babys-room-65.png')}
             label="Enfants"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('enfants')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-electronics-65.png')}
             label="Électronique"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('electronique')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-house-with-a-garden-65.png')}
             label="Maison"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('maison')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-informatics-65.png')}
             label="Informatique"
-            onPress={() => {}}
+            onPress={() =>handlCategoryPress('informatique')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-lip-gloss-65.png')}
             label="Beauté"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('beaute')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-media-65.png')}
             label="Média & Livres"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('media')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-phone-65.png')}
             label="Téléphone"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('telephone')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-polo-shirt-65.png')}
             label="Vêtements"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('vêtements')}
           />
           <PngButton
             imageSource={require('../../public/assets/png/icons8-ring-side-view-65.png')}
             label="Bijoux"
-            onPress={() => {}}
+            onPress={() => handlCategoryPress('bijoux')}
           />
         </ScrollView>
       </View>
@@ -117,6 +129,20 @@ export default function Dashboard() {
       {/* liste des groupements */}
       <View style={DashboardStyle.grid}>
         {/* liste des groupements */}
+
+        {filteredGroupements.map((g) => (
+            <View key={g.id} style={DashboardStyle.groupementList}>
+            <Card
+            title="Groupements 2"
+            participant="10"
+            flagUrl="https://flagcdn.com/w320/tg.png"
+            imageSource={require('../../public/assets/images/casque.jpg')}
+            price="1000"
+            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
+          />
+          </View>
+          ))}
+
         <View style={DashboardStyle.groupementList}>
           <Card
             title="Groupements 1"
@@ -140,7 +166,9 @@ export default function Dashboard() {
           />
         </View>
 
+
         <View style={DashboardStyle.groupementList}>
+          
           <Card
             title="Groupements 2"
             participant="10"

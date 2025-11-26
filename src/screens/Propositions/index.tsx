@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, } from 'react-native';
 import Style from '../../global/style';
 import IconButtonLarge from '../../components/iconButtonLarge';
 import ProposalsStyle from './ProposalsStyle';
@@ -24,7 +24,9 @@ export default function Propositions() {
         />
         <InputCustom
         label= "Titre de la proposition" 
-        iconName="title" 
+        iconName="sms" 
+        custumStyle={{height: 120, alignItems: 'flex-start'}}
+        multiline={true}
         />
       </View>
 

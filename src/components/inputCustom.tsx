@@ -5,6 +5,7 @@ import {
   TextInput,
   TextInputProps,
   StyleSheet,
+  ViewStyle,
 } from 'react-native';
 import { COLOR_PALETTE, TEXT_STANDARD } from '../utils/utilitaires';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -12,17 +13,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 type inputCustoProps = TextInputProps &{
   label: string;
   iconName: string;
+  custumStyle?: ViewStyle;
 };
 
 const InputCustom: React.FC<inputCustoProps> = ({
   label,
   iconName,
+  custumStyle,
   ...restProp
 }) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
-      <View style={styles.container}>
+      <View style={[styles.container, custumStyle]}>
         <Icon name={iconName} size={25} color={COLOR_PALETTE.primary} />
         <TextInput  style={styles.input}
         {...restProp} />
