@@ -85,23 +85,23 @@ export default function SingleGroupements() {
             <View style={SingleGroupementsStyle.image} />
           )}
         </View>
+
         <View style={SingleGroupementsStyle.detailsContainer}>
-          {/* Affiche l'ID du groupement sélectionné */}
-          <View style={SingleGroupementsStyle.titleSubtitleContainer}>
-            <View style={{ flex: 1 }}>
-              <Text
-                style={SingleGroupementsStyle.titleContainer}
-                numberOfLines={2}
-                ellipsizeMode="tail"
-              >
-                Groupement ID: kjkfejs kejsfeoi kljdfio ksljf lkj ko oi joifes
-                kdfe dd {id}
-              </Text>
-              <Text style={SingleGroupementsStyle.autorName}>
-                Par: Groupement App
+          {/* nb et prix */}
+          <View
+            style={[
+              SingleGroupementsStyle.row,
+              SingleGroupementsStyle.etatEtDate,
+              SingleGroupementsStyle.priceContainer,
+            ]}
+          >
+            <View style={SingleGroupementsStyle.rowPriceDevise}>
+              <Text style={SingleGroupementsStyle.prix}>1000 fcfa</Text>
+              <Text style={SingleGroupementsStyle.devise}>
+                {' '}
+                (Prix hors taxes)
               </Text>
             </View>
-
             <View>
               {/* Affiche une icône différente selon l'ID du groupement */}
               {id === 1 ? (
@@ -123,93 +123,131 @@ export default function SingleGroupements() {
               )}
             </View>
           </View>
+          {/* fin nb et prix */}
+          {/* Affiche l'ID du groupement sélectionné */}
+          <View style={SingleGroupementsStyle.titleSubtitleContainer}>
+            <View style={{ flex: 1 }}>
+              <Text
+                style={SingleGroupementsStyle.titleContainer}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Groupement ID: kjkfejs kejsfeoi kljdfio ksljf lkj ko oi joifes
+                kdfe dd {id}
+              </Text>
+              <Text style={SingleGroupementsStyle.autorName}>
+                Par: Groupement App
+              </Text>
+            </View>
+          </View>
           {/* etat et date de clôture */}
-          <View
-            style={[
-              // SingleGroupementsStyle.rowWrap,
-              SingleGroupementsStyle.etatEtDate,
-            ]}
-          >
-            <View style={SingleGroupementsStyle.rowfeature}>
-              <Image
-                style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-click-&-collect-65.png')}
-              />
-              <Text style={SingleGroupementsStyle.featureTitle}>Etat:</Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>Collecte</Text>
-            </View>
 
+          {/* date de clôture */}
+          <View style={SingleGroupementsStyle.dateClotureContainer}>
             <View style={SingleGroupementsStyle.rowfeature}>
               <Image
                 style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-country-65.png')}
-              />
-              <Text style={SingleGroupementsStyle.featureTitle}>Pays:</Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>Togo</Text>
-            </View>
-
-            <View style={SingleGroupementsStyle.rowfeature}>
-              <Image
-                style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-cargo-ship-65.png')}
-              />
-              <Text style={SingleGroupementsStyle.featureTitle}>
-                Transport:
-              </Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>
-                Par bateaux
-              </Text>
-            </View>
-
-            <View style={SingleGroupementsStyle.rowfeature}>
-              <Image
-                style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-15-65.png')}
+                source={require('../../public/assets/png/icons8-event-accepted-64.png')}
               />
               <Text style={SingleGroupementsStyle.featureTitle}>Clôture:</Text>
               <Text style={SingleGroupementsStyle.featureInfo}>10/10/2022</Text>
             </View>
-
-            <View style={SingleGroupementsStyle.rowfeature}>
-              <Image
-                style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-opened-folder-65.png')}
-              />
-              <Text style={SingleGroupementsStyle.featureTitle}>
-                Catégories:
-              </Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>Livres</Text>
-            </View>
-
-            <View style={SingleGroupementsStyle.rowfeature}>
-              <Image
-                style={SingleGroupementsStyle.iconSize}
-                source={require('../../public/assets/png/icons8-man-with-money-skin-type-3-65.png')}
-              />
-              <Text style={SingleGroupementsStyle.featureTitle}>
-                Participant:
-              </Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>12</Text>
-            </View>
           </View>
-          {/* fin de etat et date de clôture */}
+          {/* fin date de clôture */}
 
-          {/* nb et prix */}
-          <View
-            style={[
-              SingleGroupementsStyle.row,
-              SingleGroupementsStyle.etatEtDate,
-            ]}
+          {/* tous les états */}
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={SingleGroupementsStyle.scrollHorizontal}
           >
-            <View style={SingleGroupementsStyle.rowPriceDevise}>
-              <Text style={SingleGroupementsStyle.prix}>1000</Text>
-              <Text style={SingleGroupementsStyle.devise}>
-                {' '}
-                fcfa (Prix hors taxes)
-              </Text>
+            <View
+              style={[
+                // SingleGroupementsStyle.rowWrap,
+                SingleGroupementsStyle.etats,
+              ]}
+            >
+              <View
+                style={[
+                  SingleGroupementsStyle.rowfeature,
+                  SingleGroupementsStyle.etatBordure,
+                ]}
+              >
+                <Image
+                  style={SingleGroupementsStyle.iconSize}
+                  source={require('../../public/assets/png/icons8-footprint-64.png')}
+                />
+                <Text style={SingleGroupementsStyle.featureTitle}>Etat:</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>Collecte</Text>
+              </View>
+
+              <View
+                style={[
+                  SingleGroupementsStyle.rowfeature,
+                  SingleGroupementsStyle.etatBordure,
+                ]}
+              >
+                <Image
+                  style={SingleGroupementsStyle.iconSize}
+                  source={require('../../public/assets/png/icons8-country-65 (1).png')}
+                />
+                <Text style={SingleGroupementsStyle.featureTitle}>Pays:</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>Togo</Text>
+              </View>
+
+              <View
+                style={[
+                  SingleGroupementsStyle.rowfeature,
+                  SingleGroupementsStyle.etatBordure,
+                ]}
+              >
+                <Image
+                  style={SingleGroupementsStyle.iconSize}
+                  source={require('../../public/assets/png/icons8-illumination-brightness-64.png')}
+                />
+                <Text style={SingleGroupementsStyle.featureTitle}>
+                  Transport:
+                </Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>
+                  Par bateaux
+                </Text>
+              </View>
+
+              <View
+                style={[
+                  SingleGroupementsStyle.rowfeature,
+                  SingleGroupementsStyle.etatBordure,
+                ]}
+              >
+                <Image
+                  style={SingleGroupementsStyle.iconSize}
+                  source={require('../../public/assets/png/icons8-category-64.png')}
+                />
+                <Text style={SingleGroupementsStyle.featureTitle}>
+                  Catégories:
+                </Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>Livres</Text>
+              </View>
+
+              <View
+                style={[
+                  SingleGroupementsStyle.rowfeature,
+                  SingleGroupementsStyle.etatBordure,
+                ]}
+              >
+                <Image
+                  style={SingleGroupementsStyle.iconSize}
+                  source={require('../../public/assets/png/icons8-trophy-cup-64.png')}
+                />
+                <Text style={SingleGroupementsStyle.featureTitle}>
+                  Participant:
+                </Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>12</Text>
+              </View>
             </View>
-          </View>
-          {/* fin nb et prix */}
+          </ScrollView>
+
+          {/* fin de etat et date de clôture */}
 
           {/* description du groupement */}
           <View style={SingleGroupementsStyle.descriptionContainer}>
@@ -248,100 +286,99 @@ export default function SingleGroupements() {
         onPress={openModal}
         style={SingleGroupementsStyle.fixedButton}
       />
-      { groupement ? (
+      {groupement ? (
         <PopUp
-        visible={isModalVisible}
-        title={groupement.title}
-        onClose={closeModal}
-      >
-        <View>
-          <View style={SingleGroupementsStyle.popUpImageContainer}>
-            <Image
-              style={SingleGroupementsStyle.popUpImage}
-              source={require('../../public/assets/png/bestfriend solidarity.png')}
-            />
-          </View>
+          visible={isModalVisible}
+          title={groupement.title}
+          onClose={closeModal}
+        >
           <View>
-            <InputCustom
-              label="Nombre de participants"
-              iconName="people"
-              keyboardType="numeric"
-              placeholder="Entrez le nombre de participants"
-              value={count}
-              // Met à jour `count` avec la valeur saisie.
-              // onChangeText reçoit le texte saisi (string) — on le convertit
-              // en number pour stocker dans `count`.
-              onChangeText={(text: string) => {
-                if (text === '' || /^\d+$/.test(text)) {
-                  setCount(text);
-                }
-              }}
+            <View style={SingleGroupementsStyle.popUpImageContainer}>
+              <Image
+                style={SingleGroupementsStyle.popUpImage}
+                source={require('../../public/assets/png/bestfriend solidarity.png')}
+              />
+            </View>
+            <View>
+              <InputCustom
+                label="Nombre de participants"
+                iconName="people"
+                keyboardType="numeric"
+                placeholder="Entrez le nombre de participants"
+                value={count}
+                // Met à jour `count` avec la valeur saisie.
+                // onChangeText reçoit le texte saisi (string) — on le convertit
+                // en number pour stocker dans `count`.
+                onChangeText={(text: string) => {
+                  if (text === '' || /^\d+$/.test(text)) {
+                    setCount(text);
+                  }
+                }}
+              />
+            </View>
+            <View
+            // style={SingleGroupementsStyle.popUpTextContainer}
+            >
+              <Text>
+                Nb: Après validation, vous ne pouvez plus annuler votre
+                participation.
+              </Text>
+            </View>
+
+            <IconButtonLarge
+              text="Valider ma participation"
+              onPress={countToZero}
+              style={SingleGroupementsStyle.modalButton}
             />
           </View>
-          <View
-          // style={SingleGroupementsStyle.popUpTextContainer}
-          >
-            <Text>
-              Nb: Après validation, vous ne pouvez plus annuler votre
-              participation.
-            </Text>
-          </View>
-
-          <IconButtonLarge
-            text="Valider ma participation"
-            onPress={countToZero}
-            style={SingleGroupementsStyle.modalButton}
-          />
-        </View>
-      </PopUp>
-      ): (
+        </PopUp>
+      ) : (
         <PopUp
-        visible={isModalVisible}
-        title="Participer au groupement"
-        onClose={closeModal}
-      >
-        <View>
-          <View style={SingleGroupementsStyle.popUpImageContainer}>
-            <Image
-              style={SingleGroupementsStyle.popUpImage}
-              source={require('../../public/assets/png/bestfriend solidarity.png')}
-            />
-          </View>
+          visible={isModalVisible}
+          title="Participer au groupement"
+          onClose={closeModal}
+        >
           <View>
-            <InputCustom
-              label="Nombre de participants"
-              iconName="people"
-              keyboardType="numeric"
-              placeholder="Entrez le nombre de participants"
-              value={count}
-              // Met à jour `count` avec la valeur saisie.
-              // onChangeText reçoit le texte saisi (string) — on le convertit
-              // en number pour stocker dans `count`.
-              onChangeText={(text: string) => {
-                if (text === '' || /^\d+$/.test(text)) {
-                  setCount(text);
-                }
-              }}
+            <View style={SingleGroupementsStyle.popUpImageContainer}>
+              <Image
+                style={SingleGroupementsStyle.popUpImage}
+                source={require('../../public/assets/png/bestfriend solidarity.png')}
+              />
+            </View>
+            <View>
+              <InputCustom
+                label="Nombre de participants"
+                iconName="people"
+                keyboardType="numeric"
+                placeholder="Entrez le nombre de participants"
+                value={count}
+                // Met à jour `count` avec la valeur saisie.
+                // onChangeText reçoit le texte saisi (string) — on le convertit
+                // en number pour stocker dans `count`.
+                onChangeText={(text: string) => {
+                  if (text === '' || /^\d+$/.test(text)) {
+                    setCount(text);
+                  }
+                }}
+              />
+            </View>
+            <View
+            // style={SingleGroupementsStyle.popUpTextContainer}
+            >
+              <Text>
+                Nb: Après validation, vous ne pouvez plus annuler votre
+                participation.
+              </Text>
+            </View>
+
+            <IconButtonLarge
+              text="Valider ma participation"
+              onPress={countToZero}
+              style={SingleGroupementsStyle.modalButton}
             />
           </View>
-          <View
-          // style={SingleGroupementsStyle.popUpTextContainer}
-          >
-            <Text>
-              Nb: Après validation, vous ne pouvez plus annuler votre
-              participation.
-            </Text>
-          </View>
-
-          <IconButtonLarge
-            text="Valider ma participation"
-            onPress={countToZero}
-            style={SingleGroupementsStyle.modalButton}
-          />
-        </View>
-      </PopUp>
+        </PopUp>
       )}
-      
     </View>
   );
 }

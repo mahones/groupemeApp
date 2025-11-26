@@ -20,7 +20,7 @@ const InputCustom: React.FC<inputCustoProps> = ({
   ...restProp
 }) => {
   return (
-    <View >
+    <View>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.container}>
         <Icon name={iconName} size={25} color={COLOR_PALETTE.primary} />
@@ -32,6 +32,7 @@ const InputCustom: React.FC<inputCustoProps> = ({
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 13,
     borderColor: COLOR_PALETTE.primary,
-    marginVertical: 14,
+    marginVertical: 8,
     paddingVertical: 7,
     paddingHorizontal: 9,
   },
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     fontSize: TEXT_STANDARD.medium,
     position: 'relative',
-    top: 22,
+    top: 17,
     paddingHorizontal: 5,
     marginLeft: 13,
     backgroundColor: COLOR_PALETTE.white,

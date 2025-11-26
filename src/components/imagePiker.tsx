@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -47,23 +48,24 @@ const ImagePicker = () => {
   const renderImageItem = ({ item }: { item: SelectedImage }) => (
     <View>
       <Image source={{ uri: item.uri }} />
-      <TouchableOpacity
-        onPress={() => removeImage(item.id)}
-      >
-        <Icon name="close" size={20} color="white" />
+      <TouchableOpacity onPress={() => removeImage(item.id)}>
+        <Icon name="close" size={20} color="red" />
       </TouchableOpacity>
     </View>
   );
 
   return (
-    <View >
-      <View >
-        <Text >Sélectionner des images</Text>
-
+    <View>
+      <View>
         {/* Bouton de sélection */}
-        <TouchableOpacity  onPress={pickImages}>
-          <Icon name="add-photo-alternate" size={30} color="white" />
-          <Text >Choisir des images</Text>
+        <TouchableOpacity
+          onPress={pickImages}
+          style={styles.imageSelectionContainer}
+        >
+          <View style={styles.imageSecondBorder}>
+            <Icon name="add-photo-alternate" size={70} color="#ccc" />
+            <Text>Choisir des images</Text>
+          </View>
         </TouchableOpacity>
 
         {/* Compteur d'images */}
@@ -85,19 +87,16 @@ const ImagePicker = () => {
             scrollEnabled={false}
           />
         ) : (
-          <View >
-            <Icon name="photo-library" size={60} color="#ccc" />
-            <Text >Aucune image sélectionnée</Text>
+          <View style= {styles.noneImageContainer}>
+            <Icon name="photo-library" size={40} color="#ccc" style={{paddingRight: 10}} />
+            <Text>Aucune image sélectionnée</Text>
           </View>
         )}
 
         {/* Bouton pour tout effacer */}
         {selectedImages.length > 0 && (
-          <TouchableOpacity
-            
-            onPress={() => setSelectedImages([])}
-          >
-            <Text >Tout effacer</Text>
+          <TouchableOpacity onPress={() => setSelectedImages([])}>
+            <Text>Tout effacer</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -105,5 +104,29 @@ const ImagePicker = () => {
   );
 };
 
-
 export default ImagePicker;
+
+const styles = StyleSheet.create({
+  imageSelectionContainer: {
+    padding: 5,
+    borderWidth: 1,
+    borderStyle: 'dotted',
+    borderRadius: 5,
+    marginBottom: 30,
+  },
+  imageSecondBorder: {
+    borderWidth: 1,
+    borderStyle: 'dotted',
+    padding:10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200,
+    width: '100%',
+    borderRadius: 5,
+  },
+  noneImageContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});

@@ -11,7 +11,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     // flex: 1 pour que le conteneur prenne tout l'espace disponible
     flex: 1,
   },
-  flex:{
+  flex: {
     flex: 1,
   },
   detailsContainer: {
@@ -19,7 +19,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     marginLeft: PADDING_GLOBAL.left,
     marginRight: PADDING_GLOBAL.right,
   },
-  scrollContainer:{
+  scrollContainer: {
     marginBottom: 80,
   },
   imageSlider: {
@@ -56,8 +56,8 @@ const SingleGroupementsStyle = StyleSheet.create({
 
   // title container
   titleContainer: {
-    fontSize: TEXT_STANDARD.xlarge,
-    fontWeight: 'bold',
+    fontSize: TEXT_STANDARD.big,
+    fontWeight: '600',
     alignItems: 'center',
     marginRight: 1,
   },
@@ -86,6 +86,16 @@ const SingleGroupementsStyle = StyleSheet.create({
     marginRight: 10,
     marginBottom: 4,
   },
+  etatBordure:{
+    borderWidth: 1,
+    paddingHorizontal: 8,
+    paddingVertical:2,
+    borderRadius: 5,
+    borderColor: COLOR_PALETTE.validation,
+  },
+  scrollHorizontal:{
+    marginVertical: 5,
+  },
   featureTitle: {
     fontSize: TEXT_STANDARD.big,
     marginLeft: 8,
@@ -107,11 +117,11 @@ const SingleGroupementsStyle = StyleSheet.create({
     width: '100%',
     padding: 5,
     borderRadius: 10,
-    backgroundColor: '#f6f8fb',
+    backgroundColor: '#fae2c6',
   },
   rowPriceDevise: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    // flexDirection: 'row',
+    // alignItems: 'center',
   },
   column: {
     flexDirection: 'column',
@@ -167,25 +177,26 @@ const SingleGroupementsStyle = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
-  etatEtDate: {
-    marginBottom: 3,
+  etatEtDate: {},
+  etats: {
+    flexDirection: 'row',
+    marginVertical: 5,
   },
   prix: {
     fontSize: TEXT_STANDARD.xxlarge,
     fontWeight: 'bold',
     color: COLOR_PALETTE.primary,
   },
+  priceContainer: {},
   devise: {
-    fontSize: TEXT_STANDARD.big,
-    fontWeight: 'bold',
-    color: COLOR_PALETTE.primary,
+    fontSize: TEXT_STANDARD.medium,
   },
   descriptionContainer: {
     flex: 1,
     paddingBottom: 14,
     borderColor: 'gray',
     // borderBottomWidth: 0.6,
-    marginBottom: 14,
+    marginBottom: 30,
   },
   textWrap: {
     flexWrap: 'wrap',
@@ -228,6 +239,11 @@ const SingleGroupementsStyle = StyleSheet.create({
     height: 120,
     marginTop: 10,
     marginBottom: 5,
+  },
+  dateClotureContainer: {
+    borderRadius: 10,
+    padding: 2,
+    backgroundColor: '#fae2c6',
   },
 });
 
