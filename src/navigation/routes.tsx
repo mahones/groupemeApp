@@ -4,6 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, } from 'react-native';
 import BottomTab from './bottomTab';
 import SingleGroupements from '../screens/SingleGroupements';
+import Onboarding from '../screens/Auth/onboarding';
+import Login from '../screens/Auth/login';
+import Register from '../screens/Auth/register';
+import RessetPassword from '../screens/Auth/ressetPassword';
 
 /**
  * RootStackParamList - Type TypeScript pour la navigation globale
@@ -19,8 +23,12 @@ import SingleGroupements from '../screens/SingleGroupements';
 
 export type RootStackParamList = {
   dashboard: undefined;
-  SingleGroupements: { id: number };
-  Profile: undefined;
+  singleGroupements: { id: number };
+  profile: undefined;
+  onboarding: undefined;
+  login: undefined;
+  register: undefined;
+  ressetPassword: undefined;
 };
 
 /**
@@ -34,19 +42,23 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="dashboard"
+        initialRouteName="register"
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen name="onboarding" component={Onboarding} />
         <Stack.Screen name="dashboard" component={BottomTab} />
+        <Stack.Screen name="login" component={Login}/>
+        <Stack.Screen name='register' component={Register}/>
+        <Stack.Screen name='ressetPassword' component={RessetPassword}/>
         <Stack.Screen
-          name="SingleGroupements"
+          name="singleGroupements"
           component={SingleGroupements}
           options={({ route }) => ({
             headerShown: true,
             title: `Groupement #${route.params.id}`,
           })}
         />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
