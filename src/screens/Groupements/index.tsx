@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  ScrollView,
+  FlatList,
   // TouchableOpacity,
   Text,
   View,
+  StyleSheet,
 } from 'react-native';
 import Style from '../../global/style';
 import GroupementsStyle from './groupementsStyle';
@@ -11,89 +12,51 @@ import Card from '../../components/card';
 import SearchBar from '../../components/searchBare';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import type { RootStackParamList } from '../../navigation/routes';
+import { groupementsData } from '../../utils/groupementsData';
 
 export default function Groupements() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const groupements = groupementsData;
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={Style.container}>
-      <View >
-        <Text style={GroupementsStyle.title}>Rechercher un groupement</Text>
+    <View style={[Style.container]}>
+      {/* header (fixe) */}
+      <View style={GroupementsStyle.fixheader}>
+        <View>
+          <Text style={GroupementsStyle.title}>Rechercher un groupement</Text>
+        </View>
+        <SearchBar />
       </View>
-      {/* barre de recherche */}
-      <SearchBar />
-      {/* fin barre de recherche */}
 
-      {/* liste des groupements */}
-      <View style={GroupementsStyle.grid}>
-        {/* liste des groupements */}
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 1"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/pexels.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
-          />
-        </View>
-
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 2"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/casque.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
-          />
-        </View>
-
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 3"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/med.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
-          />
-        </View>
-
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 4"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/phone.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
-          />
-        </View>
-
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 5"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/savon.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
-          />
-        </View>
-        <View style={GroupementsStyle.groupementList}>
-          <Card
-            title="Groupements 6"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/soin.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
-          />
-        </View>
-        
-        {/* liste des groupements */}
-      </View>
-      {/* fin liste des groupements */}
-    </ScrollView>
+      {/* liste des groupements (scrollable) */}
+      <FlatList
+        contentContainerStyle={localStyles.listContent}
+        showsVerticalScrollIndicator={false}
+        data={groupements}
+        keyExtractor={(item: any) => String(item.id)}
+        numColumns={2}
+        columnWrapperStyle={localStyles.columnWrapper}
+        renderItem={({ item: groupement }: { item: any }) => (
+          <View style={[GroupementsStyle.groupementList]}>
+            <Card
+              title={groupement.title}
+              participant={groupement.minimum_participant}
+              flagUrl={groupement.flagUrl}
+              imageSource={groupement.image}
+              price={groupement.price}
+              onPress={() =>
+                navigation.navigate('singleGroupements', { id: groupement.id })
+              }
+            />
+          </View>
+        )}
+      />
+    </View>
   );
 }
+
+const localStyles = StyleSheet.create({
+
+  listContent: { paddingBottom: 20 },
+  columnWrapper: { justifyContent: 'space-between' },
+  // itemFlex: { flex: 1},
+});

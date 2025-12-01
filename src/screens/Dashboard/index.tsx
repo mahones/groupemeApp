@@ -1,49 +1,31 @@
 import React from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Image, FlatList } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Style from '../../global/style';
 import DashboardStyle from './dashboardStyle';
 import Card from '../../components/card';
 import PngButton from '../../components/pngButton';
-// import IconButton from '../../components/iconButton';
-import { COLOR_PALETTE } from '../../utils/utilitaires';
-import { allGroupements } from '../../store/bd';
-/**
- * Import du type RootStackParamList depuis routes.tsx
- *
- * On importe le MÊME type utilisé dans routes.tsx pour que
- * Dashboard et routes.tsx parlent le même "langage"
- *
- * type: on utilise 'type' car c'est uniquement pour TypeScript,
- * ça ne sera pas compilé en JavaScript
- */
+import { groupementsData } from '../../utils/groupementsData';
+import { categoriesData } from '../../utils/groupementsCategories';
+
 import type { RootStackParamList } from '../../navigation/routes';
 
 export default function Dashboard() {
-  /**
-   * useNavigation - Hook React Navigation pour accéder aux fonctions de navigation
-   *
-   * NavigationProp<RootStackParamList> type :
-   * Cela indique à TypeScript que cette fonction de navigation
-   * connaît toutes les routes définies dans RootStackParamList
-   *
-   * Résultat : navigation.navigate() suggère les noms de routes disponibles
-   * et vérifie les paramètres qu'on envoie
-   */
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [selectedCategory, setSelectedCategory] = React.useState('toutes');
-  const groupements = allGroupements;
+  const groupementsCategories = categoriesData;
+  const groupements = groupementsData;
   const handlCategoryPress = (nameCategory: string) => {
     setSelectedCategory(nameCategory);
   };
   const filteredGroupements = React.useMemo(() => {
     return selectedCategory === 'toutes'
       ? groupements
-      : groupements.filter(g => g.category === selectedCategory);
+      : groupements.filter(g => g.categorie === selectedCategory);
   }, [selectedCategory, groupements]);
 
   return (
-    <ScrollView style={Style.container} showsVerticalScrollIndicator={false}>
+    <View style={Style.container}>
       {/* entête de dashboard */}
       <View style={DashboardStyle.container}>
         <Text style={DashboardStyle.welcomeText}>Bienvenue, Mahones</Text>
@@ -61,169 +43,62 @@ export default function Dashboard() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={DashboardStyle.categoryList}
         >
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-check-all-65.png')}
-            label="Toutes"
-            containerStyle={{ backgroundColor: COLOR_PALETTE.secondary }}
-            onPress={() => handlCategoryPress('toutes')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-cat-65.png')}
-            label="Animaux"
-            onPress={() => handlCategoryPress('animaux')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-automobile-65.png')}
-            label="Automobile"
-            onPress={() => handlCategoryPress('automobile')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-babys-room-65.png')}
-            label="Enfants"
-            onPress={() => handlCategoryPress('enfants')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-electronics-65.png')}
-            label="Électronique"
-            onPress={() => handlCategoryPress('electronique')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-house-with-a-garden-65.png')}
-            label="Maison"
-            onPress={() => handlCategoryPress('maison')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-informatics-65.png')}
-            label="Informatique"
-            onPress={() =>handlCategoryPress('informatique')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-lip-gloss-65.png')}
-            label="Beauté"
-            onPress={() => handlCategoryPress('beaute')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-media-65.png')}
-            label="Média & Livres"
-            onPress={() => handlCategoryPress('media')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-phone-65.png')}
-            label="Téléphone"
-            onPress={() => handlCategoryPress('telephone')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-polo-shirt-65.png')}
-            label="Vêtements"
-            onPress={() => handlCategoryPress('vêtements')}
-          />
-          <PngButton
-            imageSource={require('../../public/assets/png/icons8-ring-side-view-65.png')}
-            label="Bijoux"
-            onPress={() => handlCategoryPress('bijoux')}
-          />
+          {groupementsCategories.map(cat => (
+            <PngButton
+              key={cat.id}
+              imageSource={cat.image}
+              label={cat.name}
+              containerStyle={
+                selectedCategory === cat.name ? DashboardStyle.selected : {}
+              }
+              onPress={() => handlCategoryPress(cat.name)}
+            />
+          ))}
         </ScrollView>
       </View>
       {/* fin barre horizontale des catégories */}
 
       {/* liste des groupements */}
-      <View style={DashboardStyle.grid}>
-        {/* liste des groupements */}
+      {/* liste des groupements */}
 
-        {filteredGroupements.map((g) => (
-            <View key={g.id} style={DashboardStyle.groupementList}>
-            <Card
-            title="Groupements 2"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/casque.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
+      {filteredGroupements.length > 0 ? (
+        <FlatList
+          contentContainerStyle={DashboardStyle.listcontainer}
+          showsVerticalScrollIndicator={false}
+          data={filteredGroupements}
+          keyExtractor={(item: any) => String(item.id)}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          renderItem={({ item: groupement }: { item: any }) => (
+            <View key={groupement.id} style={DashboardStyle.groupementList}>
+              <Card
+                title={groupement.title}
+                participant={groupement.minimum_participant}
+                flagUrl={groupement.flagUrl}
+                imageSource={groupement.image}
+                price={groupement.price}
+                onPress={() =>
+                  navigation.navigate('singleGroupements', {
+                    id: groupement.id,
+                  })
+                }
+              />
+            </View>
+          )}
+        />
+      ) : (
+        <View style={DashboardStyle.nonegroupement}>
+          <Image
+            source={require('../../public/assets/png/icons8-empty-100.png')}
+            style={DashboardStyle.nonegroupementImage}
           />
-          </View>
-          ))}
-
-        <View style={DashboardStyle.groupementList}>
-          <Card
-            title="Groupements 1"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/pexels.jpg')}
-            price="1000"
-            /**
-             * navigation.navigate() - Navigue vers une nouvelle page
-             *
-             * 'SingleGroupements' : nom de la route (défini dans RootStackParamList)
-             * { id: 1 } : paramètres à envoyer à SingleGroupements
-             *
-             * Flux :
-             * 1. Utilisateur clique sur la Card
-             * 2. onPress déclenche cette navigation
-             * 3. SingleGroupements reçoit { id: 1 } via useRoute().params
-             * 4. SingleGroupements affiche : "SingleGroupements - ID: 1"
-             */
-            onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
-          />
+          <Text style={DashboardStyle.nonegroupementText}>
+            Aucun groupement ({selectedCategory}) disponible
+          </Text>
         </View>
-
-
-        <View style={DashboardStyle.groupementList}>
-          
-          <Card
-            title="Groupements 2"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/casque.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
-          />
-        </View>
-
-        <View style={DashboardStyle.groupementList}>
-          <Card
-            title="Groupements 3"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/med.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
-          />
-        </View>
-
-        <View style={DashboardStyle.groupementList}>
-          <Card
-            title="Groupements 4 kei dfe "
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/phone.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
-          />
-        </View>
-
-        <View style={DashboardStyle.groupementList}>
-          <Card
-            title="Groupements 5"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/savon.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
-          />
-        </View>
-        <View style={DashboardStyle.groupementList}>
-          <Card
-            title="Groupements 6"
-            participant="10"
-            flagUrl="https://flagcdn.com/w320/tg.png"
-            imageSource={require('../../public/assets/images/soin.jpg')}
-            price="1000"
-            onPress={() => navigation.navigate('SingleGroupements', { id: 6 })}
-          />
-        </View>
-        {/* liste des groupements */}
-      </View>
+      )}
+      {/* liste des groupements */}
       {/* fin liste des groupements */}
-    </ScrollView>
+    </View>
   );
 }

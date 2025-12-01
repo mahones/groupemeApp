@@ -27,7 +27,7 @@ export default function Participations() {
         quantity={1}
         etat="Collecte"
         imageSource={require('../../public/assets/images/pexels.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 1 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 1 })}
       />
 
       <HorizontalCard
@@ -36,7 +36,7 @@ export default function Participations() {
         quantity={2}
         etat="Commande en cours"
         imageSource={require('../../public/assets/images/casque.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 2 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 2 })}
       />
 
       <HorizontalCard
@@ -45,7 +45,7 @@ export default function Participations() {
         quantity={1}
         etat="Collecte"
         imageSource={require('../../public/assets/images/med.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 3 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 3 })}
       />
 
       <HorizontalCard
@@ -54,7 +54,7 @@ export default function Participations() {
         quantity={2}
         etat="Commande en cours"
         imageSource={require('../../public/assets/images/phone.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 4 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 4 })}
       />
       <HorizontalCard
         title="Groupement 1 ljio  lkjklj lkjlj lkjlj lj lkj lkjks kd lj  lkjlkj"
@@ -62,7 +62,7 @@ export default function Participations() {
         quantity={1}
         etat="Collecte"
         imageSource={require('../../public/assets/images/savon.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 5 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 5 })}
       />
 
       <HorizontalCard
@@ -71,7 +71,7 @@ export default function Participations() {
         quantity={2}
         etat="Commande en cours"
         imageSource={require('../../public/assets/images/soin.jpg')}
-        onPress={() => navigation.navigate('SingleGroupements', { id: 6 })}
+        onPress={() => navigation.navigate('singleGroupements', { id: 6 })}
       />
 
       {/* fin liste des groupements */}

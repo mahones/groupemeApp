@@ -5,7 +5,10 @@ import SlideItems from './slideItems';
 import IconButtonLarge from '../iconButtonLarge';
 import Pagination from './pagination';
 
-const Slider = () => {
+type Props={
+  onPress: () => void
+}
+const Slider = ({onPress}: Props) => {
 /**
  * Handle when the user scrolls the FlatList.
  * This function is called when the user scrolls the FlatList.
@@ -48,7 +51,7 @@ const handleOnScroll =  Animated.event(
       </View>
       <View style={styles.centerbutton}>
         <View style={styles.buttoncontainer}>
-          <IconButtonLarge text="Skip" onPress={() => {}} />
+          <IconButtonLarge text="Skip" onPress={onPress} />
         </View>
       </View>
     </View>

@@ -4,12 +4,19 @@ import { LoginStyle } from './authStyle';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconButtonLarge from '../../components/iconButtonLarge';
 import InputCustom from '../../components/inputCustom';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../navigation/routes';
 
 export default function Login() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const onDashboard = () => navigation.navigate('dashboard');
+  const onRegister = () => navigation.navigate('register');
+  const goToPreviousPage  = () => navigation.goBack();
+  
   return (
     <View style={LoginStyle.container}>
       <View style={LoginStyle.headerAndBackLog}>
-        <TouchableOpacity style={LoginStyle.iconcontainer}>
+        <TouchableOpacity style={LoginStyle.iconcontainer} onPress={goToPreviousPage}>
           <Icon name="arrow-back-ios" size={25} color={'#3F414E'} />
         </TouchableOpacity>
       </View>
@@ -48,7 +55,7 @@ export default function Login() {
             icon="login"
             iconColor="#FFF"
             iconSize={30}
-            onPress={() => {}}
+            onPress={onDashboard}
             style={LoginStyle.bgloging}
           />
         </View>
@@ -57,7 +64,7 @@ export default function Login() {
         </TouchableOpacity>
         <View style={LoginStyle.noaccountcontainer}>
           <Text>Vous n'avez pas de compte ?</Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={onRegister}>
             <Text style={LoginStyle.noAccount}> Créer un compte</Text>
           </TouchableOpacity>
         </View>

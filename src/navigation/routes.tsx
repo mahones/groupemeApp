@@ -42,7 +42,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="register"
+        initialRouteName="onboarding"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="onboarding" component={Onboarding} />

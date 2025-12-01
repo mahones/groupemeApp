@@ -23,7 +23,7 @@ import InputCustom from '../../components/inputCustom';
 
 type SingleGroupementsRouteProp = RouteProp<
   RootStackParamList,
-  'SingleGroupements'
+  'singleGroupements'
 >;
 
 export default function SingleGroupements() {
@@ -48,7 +48,6 @@ export default function SingleGroupements() {
    */
   const groupement = getGroupementById(id);
 
-  // const [ isModalVisible, setIsModalVisible ] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [count, setCount] = React.useState('');
   const openModal = () => {
@@ -96,7 +95,7 @@ export default function SingleGroupements() {
             ]}
           >
             <View style={SingleGroupementsStyle.rowPriceDevise}>
-              <Text style={SingleGroupementsStyle.prix}>1000 fcfa</Text>
+              <Text style={SingleGroupementsStyle.prix}>{groupement?.price} fcfa</Text>
               <Text style={SingleGroupementsStyle.devise}>
                 {' '}
                 (Prix hors taxes)
@@ -132,8 +131,7 @@ export default function SingleGroupements() {
                 numberOfLines={2}
                 ellipsizeMode="tail"
               >
-                Groupement ID: kjkfejs kejsfeoi kljdfio ksljf lkj ko oi joifes
-                kdfe dd {id}
+                {groupement?.title}
               </Text>
               <Text style={SingleGroupementsStyle.autorName}>
                 Par: Groupement App
@@ -150,7 +148,7 @@ export default function SingleGroupements() {
                 source={require('../../public/assets/png/icons8-event-accepted-64.png')}
               />
               <Text style={SingleGroupementsStyle.featureTitle}>Clôture:</Text>
-              <Text style={SingleGroupementsStyle.featureInfo}>10/10/2022</Text>
+              <Text style={SingleGroupementsStyle.featureInfo}>{groupement?.date_cloture}</Text>
             </View>
           </View>
           {/* fin date de clôture */}
@@ -178,7 +176,7 @@ export default function SingleGroupements() {
                   source={require('../../public/assets/png/icons8-collect-65.png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>Etat:</Text>
-                <Text style={SingleGroupementsStyle.featureInfo}>Collecte</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>{groupement?.etat}</Text>
               </View>
 
               <View
@@ -192,7 +190,7 @@ export default function SingleGroupements() {
                   source={require('../../public/assets/png/icons8-country-65 .png')}
                 />
                 <Text style={SingleGroupementsStyle.featureTitle}>Pays:</Text>
-                <Text style={SingleGroupementsStyle.featureInfo}>Togo</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>{groupement?.pays}</Text>
               </View>
 
               <View
@@ -209,7 +207,7 @@ export default function SingleGroupements() {
                   Transport:
                 </Text>
                 <Text style={SingleGroupementsStyle.featureInfo}>
-                  Par bateaux
+                  {groupement?.transport}
                 </Text>
               </View>
 
@@ -226,7 +224,7 @@ export default function SingleGroupements() {
                 <Text style={SingleGroupementsStyle.featureTitle}>
                   Catégories:
                 </Text>
-                <Text style={SingleGroupementsStyle.featureInfo}>Livres</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>{groupement?.categorie}</Text>
               </View>
 
               <View
@@ -242,7 +240,7 @@ export default function SingleGroupements() {
                 <Text style={SingleGroupementsStyle.featureTitle}>
                   Participant:
                 </Text>
-                <Text style={SingleGroupementsStyle.featureInfo}>12</Text>
+                <Text style={SingleGroupementsStyle.featureInfo}>{groupement?.participant}</Text>
               </View>
             </View>
           </ScrollView>
@@ -267,10 +265,7 @@ export default function SingleGroupements() {
                 SingleGroupementsStyle.descriptionTopborder,
               ]}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {groupement?.description}
             </Text>
           </View>
           {/* fin description du groupement */}

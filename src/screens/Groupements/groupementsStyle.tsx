@@ -9,6 +9,7 @@ const GroupementsStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
   groupementList: {
+    
     paddingTop: PADDING_STANDARD.small,
     paddingBottom: PADDING_STANDARD.small,
   },
@@ -17,6 +18,9 @@ const GroupementsStyle = StyleSheet.create({
     fontSize: TEXT_STANDARD.large,
     fontWeight: 'bold',
     marginBottom: PADDING_STANDARD.medium,
+  },
+  fixheader:{
+    position: 'relative',
   }
 
 });

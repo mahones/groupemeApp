@@ -3,6 +3,7 @@ import {
   TEXT_STANDARD,
   PADDING_STANDARD,
   // MARGIN_STANDARD,
+  COLOR_PALETTE,
 } from '../../utils/utilitaires';
 
 const DashboardStyle = StyleSheet.create({
@@ -10,6 +11,9 @@ const DashboardStyle = StyleSheet.create({
     // flexDirection: 'row',
     // justifyContent: 'space-between',
     paddingBottom: PADDING_STANDARD.small,
+  },
+  listcontainer:{
+    paddingBottom:20,
   },
   title: {
     fontSize: TEXT_STANDARD.medium,
@@ -50,33 +54,23 @@ const DashboardStyle = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  // horizontalItem: {
-  //   backgroundColor: '#f0f0f0',
-  //   borderRadius: 8,
-  //   marginRight: MARGIN_STANDARD.medium,
-  //   height: 80,
-  //   width: 80,
-  //   // justifyContent: 'space-between',
-  // },
-  // categoryImage: {
-  //   width: '100%',
-  //   height: 80,
-  //   borderRadius: 8,
-  // },
-  // categoryText: {
-  //   fontSize: TEXT_STANDARD.medium,
-  //   paddingTop: PADDING_STANDARD.small,
-  // },
-  /** Fin liste horizontale des catégories */
-
-  // iconForIconButton: {
-  //   width: 65,
-  //   height: 65,
-  //   borderRadius: 20,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   marginRight: MARGIN_STANDARD.medium,
-  // },
+  selected:{
+    backgroundColor: COLOR_PALETTE.secondary
+  },
+  nonegroupement:{
+    padding : 20,
+    width: '100%',
+    height: '50%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  nonegroupementImage:{
+    marginBottom: 15,
+  },
+  nonegroupementText:{
+    fontSize: TEXT_STANDARD.medium,
+    fontWeight: '600'
+  }
   
 });
 

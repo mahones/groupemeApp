@@ -4,11 +4,19 @@ import { RegisterStyle } from "./authStyle"
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconButtonLarge from '../../components/iconButtonLarge';
 import InputCustom from '../../components/inputCustom';
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import type { RootStackParamList } from "../../navigation/routes";
+
 export default function Register() {
+  const navigation =  useNavigation<NavigationProp<RootStackParamList>>();
+
+  const onDashboard = () => navigation.navigate('dashboard');
+  const onLogin = () => navigation.navigate('login');
+  const goToPreviousPage  = () => navigation.goBack();
     return (
         <View style={RegisterStyle.container}>
       <View style={RegisterStyle.headerAndBackLog}>
-        <TouchableOpacity style={RegisterStyle.iconcontainer}>
+        <TouchableOpacity style={RegisterStyle.iconcontainer} onPress={goToPreviousPage}>
           <Icon name="arrow-back-ios" size={25} color={'#3F414E'} />
         </TouchableOpacity>
       </View>
@@ -34,10 +42,11 @@ export default function Register() {
         </View>
         <Text style={RegisterStyle.ortexte}>Ou se connecter avec votre email</Text>
         <View style={RegisterStyle.inputscontainer}>
-            <InputCustom label="Nom" iconName="supervised-user-circle" placeholder="Email" />
+          <InputCustom label="Nom" iconName="supervised-user-circle" placeholder="Email" />
           <InputCustom label="Email" iconName="email" placeholder="Email" />
           <InputCustom
             label="Mot de passe"
+            secureTextEntry={true}
             iconName="lock"
             placeholder="Mot de passe"
           />
@@ -48,14 +57,14 @@ export default function Register() {
             icon="create"
             iconColor="#FFF"
             iconSize={30}
-            onPress={() => {}}
+            onPress={onDashboard}
             style={RegisterStyle.bgloging}
           />
         </View>
 
         <View style={RegisterStyle.noaccountcontainer}>
           <Text>Avez vous un compte ?</Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={onLogin}>
             <Text style={RegisterStyle.noAccount}> Se connecter</Text>
           </TouchableOpacity>
         </View>
