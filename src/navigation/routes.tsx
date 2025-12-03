@@ -1,14 +1,20 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, Text, } from 'react-native';
+import { View, Text } from 'react-native';
 import BottomTab from './bottomTab';
 import SingleGroupements from '../screens/SingleGroupements';
 import Onboarding from '../screens/Auth/onboarding';
 import Login from '../screens/Auth/login';
 import Register from '../screens/Auth/register';
 import RessetPassword from '../screens/Auth/ressetPassword';
-
+import APropos from '../screens/Setting/aPropos';
+import CentreAide from '../screens/Setting/centreAide';
+import Language from '../screens/Setting/language';
+import Parametre from '../screens/Setting/parametre';
+import Politique from '../screens/Setting/politique';
+import Termes from '../screens/Setting/termes';
+import ProfileSetting from '../screens/Setting/profile';
 /**
  * RootStackParamList - Type TypeScript pour la navigation globale
  *
@@ -29,6 +35,13 @@ export type RootStackParamList = {
   login: undefined;
   register: undefined;
   ressetPassword: undefined;
+  profilesetting: undefined;
+  apropos: undefined;
+  centreaide: undefined;
+  language: undefined;
+  parametres: undefined;
+  politiqueconfidentialite: undefined;
+  termescondition: undefined;
 };
 
 /**
@@ -47,15 +60,71 @@ export default function Routes() {
       >
         <Stack.Screen name="onboarding" component={Onboarding} />
         <Stack.Screen name="dashboard" component={BottomTab} />
-        <Stack.Screen name="login" component={Login}/>
-        <Stack.Screen name='register' component={Register}/>
-        <Stack.Screen name='ressetPassword' component={RessetPassword}/>
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="ressetPassword" component={RessetPassword} />
+        <Stack.Screen
+          name="apropos"
+          component={APropos}
+          options={() => ({
+            headerShown: true,
+            title: 'A propos',
+          })}
+        />
+        <Stack.Screen
+          name="centreaide"
+          component={CentreAide}
+          options={() => ({
+            headerShown: true,
+            title: `Centre d'aide`,
+          })}
+        />
+        <Stack.Screen
+          name="language"
+          component={Language}
+          options={() => ({
+            headerShown: true,
+            title: 'Language',
+          })}
+        />
+        <Stack.Screen
+          name="parametres"
+          component={Parametre}
+          options={() => ({
+            headerShown: true,
+            title: 'Paramètres',
+          })}
+        />
+        <Stack.Screen
+          name="politiqueconfidentialite"
+          component={Politique}
+          options={() => ({
+            headerShown: true,
+            title: 'Politique de confidentialité',
+          })}
+        />
+        <Stack.Screen
+          name="termescondition"
+          component={Termes}
+          options={() => ({
+            headerShown: true,
+            title: 'Termes & conditions',
+          })}
+        />
+        <Stack.Screen
+          name="profilesetting"
+          component={ProfileSetting}
+          options={() => ({
+            headerShown: true,
+            title: 'Modifier mon profil',
+          })}
+        />
         <Stack.Screen
           name="singleGroupements"
           component={SingleGroupements}
           options={({ route }) => ({
             headerShown: true,
-            title: `Groupement #${route.params.id}`,
+            title: `Groupement ${route.params.id}`,
           })}
         />
         <Stack.Screen name="profile" component={ProfileScreen} />

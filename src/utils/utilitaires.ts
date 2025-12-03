@@ -5,6 +5,7 @@ const COLOR_PALETTE = {
  secondary: '#F87B1B',
  green: '#CBD99B',
  white: '#EEEEEE',
+ graywhite: '#E7EBEF',
  validation: '#347433',
  validation2: '#34743391',
  danger: '#B22222',
@@ -12,6 +13,7 @@ const COLOR_PALETTE = {
  gray: '#7C7C7C',
  dark: '#000000',
  light: '#FFFFFF',
+ secondary30: '#F87B1B30',
 };
 
 const TEXT_COLORS = {

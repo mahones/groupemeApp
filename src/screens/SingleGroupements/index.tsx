@@ -27,25 +27,11 @@ type SingleGroupementsRouteProp = RouteProp<
 >;
 
 export default function SingleGroupements() {
-  /**
-   * useRoute() - Hook React Navigation pour accéder aux paramètres de la route
-   *
-   * C'est comme la "props" de la page, mais spécifique à la navigation.
-   * On le type avec SingleGroupementsRouteProp pour que TypeScript
-   * sache quels paramètres sont disponibles
-   */
+
   const route = useRoute<SingleGroupementsRouteProp>();
 
-  /**
-   * Déstructuration des paramètres
-   * route.params contient : { id: number }
-   * Donc on récupère juste l'id que Dashboard a envoyé
-   */
   const { id } = route.params;
 
-  /**
-   * Récupère le groupement complet (id + image) depuis les données centralisées
-   */
   const groupement = getGroupementById(id);
 
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -125,7 +111,7 @@ export default function SingleGroupements() {
           {/* fin nb et prix */}
           {/* Affiche l'ID du groupement sélectionné */}
           <View style={SingleGroupementsStyle.titleSubtitleContainer}>
-            <View style={{ flex: 1 }}>
+            <View >
               <Text
                 style={SingleGroupementsStyle.titleContainer}
                 numberOfLines={2}
@@ -135,6 +121,18 @@ export default function SingleGroupements() {
               </Text>
               <Text style={SingleGroupementsStyle.autorName}>
                 Par: Groupement App
+              </Text>
+            </View>
+            <View style={SingleGroupementsStyle.paticipationborder}>
+              <Text
+                style={SingleGroupementsStyle.participaiton}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Ma participation : {groupement?.minimum_participant}
+              </Text>
+              <Text style={SingleGroupementsStyle.participaiton}>
+                Prix total: {groupement?.price} fcfa
               </Text>
             </View>
           </View>

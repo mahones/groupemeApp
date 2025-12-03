@@ -43,8 +43,9 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
         >
           {title}
         </Text>
-
-        <Text style={styles.etat}>{etat}</Text>
+        {etat === 'Collecte' && (<Text style={styles.etatcollect}>{etat}</Text>)}
+        {etat === 'Terminer' && (<Text style={styles.etatteminer}>{etat}</Text>)}
+        {etat === 'En cours' && (<Text style={styles.etat}>{etat}</Text>)}
         <View style={styles.maParticipation}>
           <Text style={styles.text}>Ma paticipaiton ({quantity}): </Text>
           <Text style={styles.price}>{price}</Text>
@@ -94,15 +95,38 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   etat: {
-    // width: 'auto',
     marginVertical: 3,
     padding: 3,
     borderWidth: 1,
     borderRadius: 5,
-    
+    fontWeight: '700',
     alignSelf: 'flex-start',
     borderColor: COLOR_PALETTE.secondary,
     color: COLOR_PALETTE.secondary,
+  },
+  etatcollect: {
+    marginVertical: 3,
+    padding: 3,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontWeight: '700',
+    alignSelf: 'flex-start',
+    borderColor: COLOR_PALETTE.validation,
+    color: COLOR_PALETTE.validation,
+  },
+  etatteminer: {
+    marginVertical: 3,
+    padding: 3,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontWeight: '700',
+    alignSelf: 'flex-start',
+    borderColor: COLOR_PALETTE.danger,
+    color: COLOR_PALETTE.danger,
+  },
+  bgterminer:{
+    backgroundColor: COLOR_PALETTE.danger,
+    opacity: 0.3
   },
   maParticipation: {
     marginTop: 5,

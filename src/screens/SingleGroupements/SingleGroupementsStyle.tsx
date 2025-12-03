@@ -61,6 +61,17 @@ const SingleGroupementsStyle = StyleSheet.create({
     alignItems: 'center',
     marginRight: 1,
   },
+  paticipationborder:{
+    // borderWidth: 1,
+    // paddingHorizontal: 8,
+    // borderRadius: 5,
+    // marginVertical: 3,
+  },
+  participaiton: {
+    fontSize: TEXT_STANDARD.medium,
+    fontWeight: '800',
+    color: COLOR_PALETTE.validation
+  },
   // end title container
   textSmall: {
     fontSize: TEXT_STANDARD.small,
@@ -86,14 +97,14 @@ const SingleGroupementsStyle = StyleSheet.create({
     marginRight: 10,
     marginBottom: 4,
   },
-  etatBordure:{
+  etatBordure: {
     borderWidth: 1,
     paddingHorizontal: 8,
-    paddingVertical:2,
+    paddingVertical: 2,
     borderRadius: 5,
     borderColor: COLOR_PALETTE.validation,
   },
-  scrollHorizontal:{
+  scrollHorizontal: {
     marginVertical: 5,
   },
   featureTitle: {
@@ -117,7 +128,7 @@ const SingleGroupementsStyle = StyleSheet.create({
     width: '100%',
     padding: 5,
     borderRadius: 10,
-    backgroundColor: '#faf0e6',
+    backgroundColor: COLOR_PALETTE.secondary30,
   },
   rowPriceDevise: {
     // flexDirection: 'row',
@@ -211,6 +222,8 @@ const SingleGroupementsStyle = StyleSheet.create({
   },
   descriptionTopborder: {
     // borderTopWidth: 0.2,
+    textAlign: 'justify',
+    lineHeight: 25,
     borderColor: 'gray',
     paddingTop: 6,
   },
@@ -243,7 +256,7 @@ const SingleGroupementsStyle = StyleSheet.create({
   dateClotureContainer: {
     borderRadius: 10,
     padding: 2,
-    backgroundColor: '#faf0e6',
+    backgroundColor: COLOR_PALETTE.secondary30,
   },
 });
 

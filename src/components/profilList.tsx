@@ -1,25 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { COLOR_PALETTE } from '../utils/utilitaires';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React  from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ImageSourcePropType } from 'react-native';
+// import { COLOR_PALETTE } from '../utils/utilitaires';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TEXT_STANDARD } from '../utils/utilitaires';
 type Props = {
-  iconName: string;
   title: string;
+  children?: React.ReactNode;
+  imageSource?: ImageSourcePropType;
+  onPress?: () => void;
 };
-const ProfilList = ({ iconName, title }: Props) => {
+const ProfilList = ({  title, imageSource, children, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.mainContainer}>
+    <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.container}>
-          <Icon name={iconName} size={25} color={COLOR_PALETTE.secondary} />
+          <Image source={imageSource}/>
           <Text style={styles.text}>{title}</Text>
         </View>
-        <Icon
-          name="arrow-forward-ios"
-          size={20}
-          color={COLOR_PALETTE.primary}
-        />
+        {children && <View>
+          {children}
+        </View>}
       </View>
     </TouchableOpacity>
   );
@@ -27,21 +27,21 @@ const ProfilList = ({ iconName, title }: Props) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: COLOR_PALETTE.green,
+    marginVertical: 5,
     
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 5,
-    marginTop: 8,
-    marginBottom: 8,
+    padding: 7,
+    borderRadius: 8,
+    backgroundColor: '#E7EBEF',
+
   },
   text: {
-    marginLeft: 10,
-    fontWeight: 'bold',
+    marginLeft: 25,
+    fontWeight: '500',
     fontSize: TEXT_STANDARD.medium,
   },
 });

@@ -2,54 +2,95 @@ import React from 'react';
 import {
   View,
   Text,
-  //   Image,
-  //   TouchableOpacity,
+  Image,
+  TouchableOpacity,
   //   ImageSourcePropType,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { COLOR_PALETTE } from '../../utils/utilitaires';
-import Style from '../../global/style';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../navigation/routes';
+// import Style from '../../global/style';
 import ProfileStyle from './profileStyle';
 import ProfilList from '../../components/profilList';
-import IconButtonLarge from '../../components/iconButtonLarge';
+// import IconButtonLarge from '../../components/iconButtonLarge';
+
 
 export default function Profile() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
-    <View style={[Style.container, ProfileStyle.verticalCenter]}>
+    <View style={[ProfileStyle.profilecontainer]}>
       <View>
+        {/* entête de profile  */}
         <View style={ProfileStyle.container}>
+          <View style={ProfileStyle.imagecontainer}>
+            <Image source={require('../../public/assets/images/Cover-Photoroom.png')} style={ProfileStyle.image} />
+          </View>
           <View style={ProfileStyle.headercontainer}>
+            <View style={ProfileStyle.row}>
+              <View style={ProfileStyle.profilImageContainer}>
+                <Image
+                  source={require('../../public/assets/png/setting/typcn_user.png')}
+                />
+              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('profilesetting')}>
+                <View style={ProfileStyle.profileditContainer}>
+                  <Image
+                    source={require('../../public/assets/png/setting/iconamoon_edit.png')}
+                  />
+                  <Text style={ProfileStyle.mofifierprofil}>Modifier</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+
             <View style={ProfileStyle.namecontainer}>
               <Text style={ProfileStyle.nametext}>Mahones SITTI</Text>
-              <Icon name="edit" size={20} color={COLOR_PALETTE.validation} />
             </View>
             <Text>sittisam2@gmail.com</Text>
           </View>
-          <Icon
-            name="notifications"
-            size={35}
-            color={COLOR_PALETTE.primary}
-            style={ProfileStyle.iconbg}
+        </View>
+        {/* fin de l'entête du profile  */}
+
+        <View style={ProfileStyle.setingscontainer}>
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/lucide_user-round.png')}
+            title="Profil"
+            onPress={() => navigation.navigate('profilesetting')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/flowbite_language-outline.png')}
+            title="Language"
+            onPress={() => navigation.navigate('language')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/akar-icons_gear.png')}
+            title="Paramètres"
+            onPress={() => navigation.navigate('parametres')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/hugeicons_help-circle.png')}
+            title="Centre d'aide"
+            onPress={() => navigation.navigate('centreaide')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/lucide_info.png')}
+            title="A propos de l'application"
+            onPress={() => navigation.navigate('apropos')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/mage_file-2.png')}
+            title="Termes et conditions"
+            onPress={() => navigation.navigate('termescondition')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/tabler_lock.png')}
+            title="Politique de confidentialité"
+            onPress={() => navigation.navigate('politiqueconfidentialite')}
+          />
+          <ProfilList
+            imageSource={require('../../public/assets/png/setting/hugeicons_logout-01.png')}
+            title="Déconnexion"
+            onPress={() => {}}
           />
         </View>
-
-        <ProfilList iconName="person" title="Mon Profil" />
-        <ProfilList iconName="phone" title="Numéro de téléphone" />
-        <ProfilList iconName="location-history" title="Adresse de livraison" />
-        <ProfilList iconName="settings" title="Paramètres" />
-        <ProfilList iconName="help" title="Aide" />
-        <ProfilList iconName="textsms" title="A propos" />
-      </View>
-
-      <View style={ProfileStyle.logoutcontainer}>
-        <IconButtonLarge
-          icon="logout"
-          text="Déconnexion"
-          iconSize={30}
-          iconColor={COLOR_PALETTE.white}
-          onPress={() => {}}
-          textStyle={ProfileStyle.buttonTextStyle}
-        />
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import Style from '../../global/style';
 import ParticipationsStyle from './participationsStyle';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
@@ -7,11 +7,14 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import SearchBar from '../../components/searchBare';
 import HorizontalCard from '../../components/horizontalCard';
 import type { RootStackParamList } from '../../navigation/routes';
+import { participationsData } from '../../utils/participations';
+// import { groupementsData } from '../../utils/groupementsData';
 
 export default function Participations() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const participations = participationsData;
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={Style.container}>
+    <View style={Style.container}>
       <View>
         <Text style={ParticipationsStyle.title}>Mes participations</Text>
       </View>
@@ -21,60 +24,25 @@ export default function Participations() {
 
       {/* liste des groupements */}
 
-      <HorizontalCard
-        title="Groupement 1 ljio  lkjklj lkjlj lkjlj lj lkj lkjks kd lj  lkjlkj"
-        price="1000 fcfa"
-        quantity={1}
-        etat="Collecte"
-        imageSource={require('../../public/assets/images/pexels.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 1 })}
+      <FlatList
+        // style={{ flex: 1 }}
+        data={participations}
+        keyExtractor={(item: any) => String(item.id)}
+        numColumns={1}
+        contentContainerStyle={{ paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item: participation }: { item: any }) => (
+          <HorizontalCard
+            title={participation.groupement_id.title}
+            price={participation.price}
+            quantity={participation.quantity}
+            etat={participation.groupement_id.etat}
+            imageSource={participation.groupement_id.image}
+            onPress={() => navigation.navigate('singleGroupements', { id: participation.groupement_id.id })}
+          />
+        )}
       />
-
-      <HorizontalCard
-        title="Groupement 2 "
-        price="1000  fcfa"
-        quantity={2}
-        etat="Commande en cours"
-        imageSource={require('../../public/assets/images/casque.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 2 })}
-      />
-
-      <HorizontalCard
-        title="Groupement 3 l"
-        price="1000 fcfa"
-        quantity={1}
-        etat="Collecte"
-        imageSource={require('../../public/assets/images/med.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 3 })}
-      />
-
-      <HorizontalCard
-        title="Groupement 4 "
-        price="1000  fcfa"
-        quantity={2}
-        etat="Commande en cours"
-        imageSource={require('../../public/assets/images/phone.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 4 })}
-      />
-      <HorizontalCard
-        title="Groupement 1 ljio  lkjklj lkjlj lkjlj lj lkj lkjks kd lj  lkjlkj"
-        price="1000 fcfa"
-        quantity={1}
-        etat="Collecte"
-        imageSource={require('../../public/assets/images/savon.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 5 })}
-      />
-
-      <HorizontalCard
-        title="Groupement 2 "
-        price="1000  fcfa"
-        quantity={2}
-        etat="Commande en cours"
-        imageSource={require('../../public/assets/images/soin.jpg')}
-        onPress={() => navigation.navigate('singleGroupements', { id: 6 })}
-      />
-
       {/* fin liste des groupements */}
-    </ScrollView>
+    </View>
   );
 }

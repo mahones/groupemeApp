@@ -77,7 +77,7 @@ export const groupementsData = [
     categorie: 'beaute',
     participant: 23,
     price: '3000',
-    etat: 'Commande en cours',
+    etat: 'En cours',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },

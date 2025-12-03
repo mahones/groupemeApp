@@ -6,8 +6,8 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLOR_PALETTE } from '../utils/utilitaires';
 
 // Props acceptées par le composant BottomPopUp
