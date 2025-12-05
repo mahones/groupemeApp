@@ -48,7 +48,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
         {etat === 'En cours' && (<Text style={styles.etat}>{etat}</Text>)}
         <View style={styles.maParticipation}>
           <Text style={styles.text}>Ma paticipaiton ({quantity}): </Text>
-          <Text style={styles.price}>{price}</Text>
+          <Text style={styles.price}>{price} fcfa</Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -13,7 +13,6 @@ import ProfileStyle from './profileStyle';
 import ProfilList from '../../components/profilList';
 // import IconButtonLarge from '../../components/iconButtonLarge';
 
-
 export default function Profile() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
@@ -22,7 +21,10 @@ export default function Profile() {
         {/* entête de profile  */}
         <View style={ProfileStyle.container}>
           <View style={ProfileStyle.imagecontainer}>
-            <Image source={require('../../public/assets/images/Cover-Photoroom.png')} style={ProfileStyle.image} />
+            <Image
+              source={require('../../public/assets/images/Cover-Photoroom.png')}
+              style={ProfileStyle.image}
+            />
           </View>
           <View style={ProfileStyle.headercontainer}>
             <View style={ProfileStyle.row}>
@@ -31,7 +33,9 @@ export default function Profile() {
                   source={require('../../public/assets/png/setting/typcn_user.png')}
                 />
               </View>
-              <TouchableOpacity onPress={() => navigation.navigate('profilesetting')}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('profilesetting')}
+              >
                 <View style={ProfileStyle.profileditContainer}>
                   <Image
                     source={require('../../public/assets/png/setting/iconamoon_edit.png')}
@@ -65,16 +69,7 @@ export default function Profile() {
             title="Paramètres"
             onPress={() => navigation.navigate('parametres')}
           />
-          <ProfilList
-            imageSource={require('../../public/assets/png/setting/hugeicons_help-circle.png')}
-            title="Centre d'aide"
-            onPress={() => navigation.navigate('centreaide')}
-          />
-          <ProfilList
-            imageSource={require('../../public/assets/png/setting/lucide_info.png')}
-            title="A propos de l'application"
-            onPress={() => navigation.navigate('apropos')}
-          />
+
           <ProfilList
             imageSource={require('../../public/assets/png/setting/mage_file-2.png')}
             title="Termes et conditions"

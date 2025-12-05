@@ -123,7 +123,7 @@ export default function SingleGroupements() {
                 Par: Groupement App
               </Text>
             </View>
-            <View style={SingleGroupementsStyle.paticipationborder}>
+            {/* <View style={SingleGroupementsStyle.paticipationborder}>
               <Text
                 style={SingleGroupementsStyle.participaiton}
                 numberOfLines={2}
@@ -134,7 +134,7 @@ export default function SingleGroupements() {
               <Text style={SingleGroupementsStyle.participaiton}>
                 Prix total: {groupement?.price} fcfa
               </Text>
-            </View>
+            </View> */}
           </View>
           {/* etat et date de clôture */}
 

@@ -20,12 +20,10 @@ const SlideItems = ({ title, img, description }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.imagecontainer}>
-          <Image resizeMode="contain" source={img} />
+        <Image resizeMode="contain" source={img} style={styles.image} />
       </View>
-      <Text style={styles.title} >{title}</Text>
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
-      
-      
     </View>
   );
 };
@@ -40,19 +38,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title:{
+  title: {
     fontSize: 18,
-    marginBottom: 20,
-    fontWeight: '700',
-    alignContent: 'center'
-  },
-  description:{
+    marginBottom: 15,
     width: '85%',
+    textAlign: 'center',
+    fontWeight: '700',
+    alignContent: 'center',
+  },
+  description: {
+    width: '85%',
+    fontSize: 16,
     alignContent: 'center',
     textAlign: 'center',
+    lineHeight: 20
   },
-  imagecontainer:{
-    paddingBottom: 50,
+  imagecontainer: {
+    paddingBottom: 20,
+    width: '85%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  
+  image:{
+    height: 200,
+    width: 300
+  }
 });
